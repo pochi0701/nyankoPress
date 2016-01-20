@@ -1,0 +1,24 @@
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>タイトル</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+    <tbody>
+<?php
+    $cnt = 0;
+    $edit = floor($mode/2);
+    $edit2 = $edit*2;
+    foreach( $_contents as $value){
+        if( $value['mode'] == $edit ){
+            echo "<tr>\n";
+            echo "<td><a href=\"index.php?mode={$edit2}&p={$cnt}\">{$cnt}</a></td><td><a href=\"index.php?mode={$edit2}&p={$cnt}\">{$value['title']}</a></td><td>DEL</td>";
+            echo "</tr>\n";
+        }
+        $cnt = $cnt+1;
+    }
+?>
+    </tbody>
+  </table>

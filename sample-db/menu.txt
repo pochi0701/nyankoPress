@@ -1,0 +1,1 @@
+{"bland":"\u30c6\u30b9\u30c8\u30da\u30fc\u30b8","menu":{"\u30d6\u30ed\u30b0":"index.php","\u56fa\u5b9a\u30da\u30fc\u30b8":"index.php?p=1","\u30ab\u30eb\u30fc\u30bb\u30eb":"index.php?p=3","\u30b5\u30a4\u30c9\u30d0\u30fc":"index.php?p=4","\u30ed\u30b0\u30a4\u30f3":"system\/login.php"}}
