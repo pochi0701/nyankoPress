@@ -21,11 +21,9 @@ function dbLoad()
     if( $_SERVER['SCRIPT_FILENAME'] != $_SESSION['home'] ){
        if( $_SESSION['login'] === 1 ){
            $_SESSION = array();
-           session_destroy();
            $_SESSION['login'] = 1;
        }else{
            $_SESSION = array();
-           session_destroy();
        }
        $_SESSION['home'] = $_SERVER['SCRIPT_FILENAME'];
     }
