@@ -18,24 +18,13 @@ function dbLoad()
 {
     global $_contents;
     global $_menu;
-    if( $_SERVER['SCRIPT_FILENAME'] != $_SESSION['home'] ){
-       if( $_SESSION['login'] === 1 ){
-           $_SESSION = array();
-           session_destroy();
-           $_SESSION['login'] = 1;
-       }else{
-           $_SESSION = array();
-           session_destroy();
-       }
-       $_SESSION['home'] = $_SERVER['SCRIPT_FILENAME'];
-    }
     if( isset($_SESSION['_contents'] )){
         $_contents = $_SESSION['_contents'];
     }else{
         if( file_exists("db/contents.txt") ){
             $_contents = json_decode(file_get_contents("db/contents.txt"),true);
         }else{
-            dbAddContents(1,'投稿一覧','','',-1);
+            dbAddContents(1,'投稿一覧','','');
         }
     }
     if( isset($_SESSION['_menu'] )){
@@ -78,29 +67,6 @@ function dbGetContents($number)
     }else{
         return array(""=>'mode',""=>'title',""=>'contents',""=>'eyecatch',""=>'regdate',""=>'moddate');
     }
-}
-//
-function dbSortedContents($type)
-{
-   global $_contents;
-   //投稿記事のみ
-   foreach( $_contents as $value){
-       if( $value['mode'] == 0 ){
-          $_contents2[] = $value;
-       }
-   }
-   //ソート
-   $cnt = count($_contents2)-1;
-   for( $i = 0 ; $i < $cnt-1 ; $i++ ){
-       for( $j = $i+1 ; $j < $cnt ; $j++ ){
-           if( $_contents2[$i]['regdate']<$_contents2[$j]['regdate'] ){
-                $tmp = $_contents2[$i];
-                $_contents2[$i] = $_contents2[$j];
-                $_contents2[$j] = $tmp;
-           }
-       }
-   }
-   return $_contents2;
 }
 //mode =-1:normal 0:edit
 function dbSetMenu($menu)

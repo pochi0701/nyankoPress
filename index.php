@@ -3,6 +3,7 @@ session_start();
 require_once('system/req.php');
 $mode = array_getn($_GET,'mode');
 $page = array_getn($_GET,'p');
+$ym   = array_getn($_GET,'ym');
 //ページデータ取得
 dbLoad();
 //編集

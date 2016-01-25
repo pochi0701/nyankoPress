@@ -18,7 +18,7 @@
                  $okey = null;
                  $ovalue = null;
                  foreach($menu as $key => $value){
-                   if( ! is_null($key) ){
+                   if( isset($okey) ){
                      if( is_array( $value ) ){
                        echo "<li class=\"dropdown\">\n";
                        echo "  <a href=\"{$ovalue}\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n";

