@@ -1,25 +1,27 @@
 NyankoPress
 =============
 
-�ɂ�񂱃v���X��1000�s���x�̃V���v����CMS��PHP�ŏ�����Ă��܂��B��ȋZ�p�Ƃ��ĂP�s�e���v���[�g�G���W�����g���Ă��܂��B�P�s�e���v���[�g�̓e���v���[�g�G���W�����P�s�ŏ������@�ŁA���L�̂悤�Ɋ֐����g���č\�z����Ă��܂��B
+にゃんこプレスは1000行程度のシンプルなCMSでPHPで書かれています。主な技術として１行テンプレートエンジンを使っています。１行テンプレートはテンプレートエンジンを１行で書く方法で、下記のように関数を使って構築されています。
 
 ```php
 $header  = function($title,$bland,$menu){global $theme;include "themes/{$theme}/header.php";};
 ```
 
-���̗�ł̓e���v���[�g�Ɉ����n���ϐ����w�肵�ăe���v���[�g����header.php��include���Ă܂��Bglobal�ϐ�$theme�ɂ���ăe�[�}�͎��R�ɕύX�\�ł��B
+この例ではテンプレートに引き渡す変数を指定してテンプレート側のheader.phpをincludeしてます。global変数$themeによってテーマは自由に変更可能です。
 
 ## installation
-�����ǂ̃o�[�W������PHP�ł������܂��B�\�[�X�S�̂�K���ȃt�H���_�ɃR�s�[����΂���ł����܂��ł��Bwindows�ł͓���`�F�b�N���ĂȂ��ł����A����ȋ@�\�ɂ͈ˑ����ĂȂ��̂ő��������ł��傤�BID/PW�͏��񃍃O�C���ŋL�^����܂��B�K�����O�C�����Ă��������B
+多分どのバージョンのPHPでも動きます。ソース全体を適当なフォルダにコピーすればそれでおしまいです。windowsでは動作チェックしてないですが、特殊な機能には依存してないので多分動くでしょう。ID/PWは初回ログインで記録されます。必ずログインしてください。
 
 ## themes
-�e�[�}��themes/�e�[�}���Ŏ��R�ɍ���Ă��������Bfooter,header,main,navbar,mainidx���Œ���΂������Ǝv���܂��B
+テーマはthemes/テーマ名で自由に作ってください。footer,header,main,navbar,mainidxを最低作ればいいかと思います。
 
 ## database
-�f�[�^�x�[�X�͎g���Ă��܂���BJSON�Ńt�@�C���ɕۑ����Ă܂��BPHP5.1���炢����SQLITE�g���邻���Ȃ̂ŁA���̂����ɓ���邩���m��܂���B
+データベースは使っていません。JSONでファイルに保存してます。PHP5.1くらいからSQLITE使えるそうなので、そのうちに入れるかも知れません。
 
 ## misc
-����͂܂��K���ɂ��肢���܂��B�����P�T�Ԃ��炢�ō�����̂ł��ꂭ�炢�Ȋ����ŁB
+操作はまあ適当にお願いします。正味１週間くらいで作ったのでこれくらいな感じで。
+
+サンプルサイト http://neon.cx
 
 NyankoPress is Tiny(about 1000lines) Simple CMS based BootStrap and one liner template engine.
 
