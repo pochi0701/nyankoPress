@@ -3,21 +3,37 @@ session_start();
 require_once("req.php");
 $id=array_get($_POST,"username");
 $pw=array_get($_POST,"password");
+$em=array_get($_POST,"email");
 include("info.php");
 $msg = "";
-if( ! isset($userid) ){
+if( ! isset($login) ){
     $msg = "IDとパスワードを記録します。";
 }   
 if( strlen($id)>0 && strlen($pw) ) {
-    if( ! isset($userid) ){
-        $msg = '<?php $userid="'.$id."\";\n".'$passwd="'.md5($pw)."\";\n";
-        file_put_contents("info.php",$msg);
+    //初回
+    if( ! isset($login) && strlen($em)>0){
+        $msg = array('userid'=>$id,'password'=>md5($pw),'email'=>$em);
+        $login[] = $msg;
+        file_put_contents("info.php",'<?php $login = json_decode(\''.json_encode($login).'\',true);'."\n");
         $_SESSION['login'] = 1;
         header("Location:../index.php?mode=0");
-    }else if( ($id === $userid && md5($pw) === $passwd )  ) {
+        exit;
+    //２回目以降
+    }else if ( strlen($em)>0 && $_SESSION['login'] === 1){
+        $msg = array('userid'=>$id,'password'=>md5($pw),'email'=>$em);
+        $login[] = $msg;
+        file_put_contents("info.php",'<?php $login = json_decode(\''.json_encode($login).'\',true);'."\n");
         $_SESSION['login'] = 1;
         header("Location:../index.php?mode=0");
+        exit;
     }else{
+        foreach( $login as $key => $value){
+            if( $value['userid'] === $id && $value['password'] === md5($pw) ){
+                $_SESSION['login'] = 1;
+                header("Location:../index.php?mode=0");
+                exit;
+            }
+        }
         $msg = "IDまたはパスワードが違います。";
     }
 }

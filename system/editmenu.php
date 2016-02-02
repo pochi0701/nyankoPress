@@ -2,7 +2,7 @@
 global $syshdr;
 global $sysftr;
 global $_contents;
-$syshdr($title,$bland,$menu);
+$syshdr($title,$bland,$menu,'');
 $submit = array_get($_POST,'submit');
 $sbland = array_get($_POST,'bland');
 $text   = array_get($_POST,'text');
@@ -14,15 +14,18 @@ if( strlen($submit) ){
     $cnt = -1;
     foreach( $array as $value){
         $value = mb_convert_kana($value,'s','UTF-8');
-        $line = explode(" ",$value);
-        if( count($line) == 2 ){
-            $smenu   += array($line[0] => $line[1]);
-        }else if ( count($line) == 3 && strlen($line[0]) == 0 ){
-            if( is_array($smenu[$cnt]) ){
-                $smenu[$cnt] += array($line[1] => $line[2]);
+        $flag = ($value[0]==' ')?1:0; 
+        $line = explode(",",trim($value));
+        if( count($line) == 2 ){        
+            if( $flag == 0 ){
+                $smenu   += array($line[0] => $line[1]);
             }else{
-                $smenu[]  = array($line[1] => $line[2]);
-                $cnt += 1;
+                if( is_array($smenu[$cnt]) ){
+                    $smenu[$cnt] += array($line[0] => $line[1]);
+                }else{
+                    $smenu[]  = array($line[0] => $line[1]);
+                    $cnt += 1;
+                }
             }
         }
     }
@@ -36,17 +39,17 @@ if( strlen($submit) ){
     foreach( $smenu as $key => $value ){
         if( is_array($value) ){
             foreach( $value as $key2 => $value2 ){
-                $text .= " {$key2} {$value2}\n";
+                $text .= " {$key2},{$value2}\n";
             }
         }else{
-            $text .= "{$key} {$value}\n";
+            $text .= "{$key},{$value}\n";
         }
     }
     $text .= "\n";
-    foreach( $_contents as $key => $value ){
+    foreach( $_contents as $value ){
         if( $value['mode'] == 1 ){
-            if( strpos($text,$value['title']) === false && strpos($text,"index.php?p={$key}") === false ){
-                $text .= "{$value['title']} index.php?p={$key}\n";
+            if( strpos($text,$value['title']) === false && strpos($text,"index.php?p={$value['page']}") === false ){
+                $text .= "{$value['title']},index.php?p={$value['page']}\n";
             }
         }
     }

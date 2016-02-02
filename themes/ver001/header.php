@@ -9,6 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="<?php global $bootstrap_css;echo $bootstrap_css;?>" rel="stylesheet">
   <style>
+    .jumbotron {
+      background-image: url("img/photo.jpg");
+      background-size: cover;
+      background-position: center 60%;
+    }
     @media (min-width:767px){
       .dropdown:hover > .dropdown-menu{
         display: block;
@@ -19,7 +24,7 @@
   <script src="<?php global $bootstrap_js;echo $bootstrap_js;?>"></script>
   <?php echo $head; ?>
 </head>
-<body>
+<body style="padding-top:53px;">
     <?php
     global $navbar;
     $navbar($title,$bland,$menu);

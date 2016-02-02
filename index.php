@@ -20,6 +20,8 @@ if( $mode >= 0 && isset($_SESSION['login'])){
     else if( $mode == 6 ) {
           unset($_SESSION['login']);
           header("Location:index.php");
+    }else if( $mode == 7 ){
+        include('system/dump.php');
     }
 //表示
 }else{
