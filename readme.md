@@ -1,7 +1,7 @@
 NyankoPress
 =============
 
-にゃんこプレスは1000行程度のシンプルなCMSでPHPで書かれています。主な技術として１行テンプレートエンジンを使っています。１行テンプレートはテンプレートエンジンを１行で書く方法で、下記のように関数を使って構築されています。
+にゃんこプレスは1500行程度のシンプルなCMSでPHPで書かれています。主な技術として１行テンプレートエンジンを使っています。１行テンプレートはテンプレートエンジンを１行で書く方法で、下記のように関数を使って構築されています。
 
 ```php
 $header  = function($title,$bland,$menu){global $theme;include "themes/{$theme}/header.php";};
@@ -14,12 +14,16 @@ $header  = function($title,$bland,$menu){global $theme;include "themes/{$theme}/
 
 ## themes
 テーマはthemes/テーマ名で自由に作ってください。footer,header,main,navbar,mainidxを最低作ればいいかと思います。
+現在standardに加え固定ナビゲーションのver001が有効です。これもreq.phpを直接書き換えてください。
+
+## widget
+ウィジットはBootstrapで投稿コンテンツ右、左、ブログページ右、左、フッタに配置可能です。今のところカレンダーとyoutubeを作成しました。これからもう少し増やします。
 
 ## database
 データベースは使っていません。JSONでファイルに保存してます。PHP5.1くらいからSQLITE使えるそうなので、そのうちに入れるかも知れません。
 
 ## misc
-操作はまあ適当にお願いします。正味１週間くらいで作ったのでこれくらいな感じで。
+ページ編集時にnativeフラグを用意しました。nativeにチェックを入れるとphpのコードが有効になり、<?php .. ?>を記述できます。
 
 サンプルサイト http://neon.cx
 
