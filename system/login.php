@@ -16,6 +16,7 @@ if( strlen($id)>0 && strlen($pw) ) {
         $login[] = $msg;
         file_put_contents("info.php",'<?php $login = json_decode(\''.json_encode($login).'\',true);'."\n");
         $_SESSION['login'] = 1;
+        $_SESSION['auther'] = $id;
         header("Location:../index.php?mode=0");
         exit;
     //２回目以降
@@ -24,12 +25,14 @@ if( strlen($id)>0 && strlen($pw) ) {
         $login[] = $msg;
         file_put_contents("info.php",'<?php $login = json_decode(\''.json_encode($login).'\',true);'."\n");
         $_SESSION['login'] = 1;
+        $_SESSION['auther'] = $id;
         header("Location:../index.php?mode=0");
         exit;
     }else{
         foreach( $login as $key => $value){
             if( $value['userid'] === $id && $value['password'] === md5($pw) ){
                 $_SESSION['login'] = 1;
+                $_SESSION['auther'] = $id;
                 header("Location:../index.php?mode=0");
                 exit;
             }

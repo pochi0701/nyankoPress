@@ -95,6 +95,6 @@ if (isset($_FILES['upfile'])){
 }
 global $syshdr;
 global $sysftr;
-$syshdr($title,$bland,$menu);
+$syshdr($title,$bland,$menu,'');
 include("upload.html");
 $sysftr();

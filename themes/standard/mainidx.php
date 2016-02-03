@@ -4,17 +4,17 @@
     global $widget;
     global $native;
     global $settings;
-    $wl = count($settings['widget-l']);
-    $wr = count($settings['widget-r']);
-    $header($title,$bland,$menu,$data['header']);
+    $wl = count($settings['widget_l']);
+    $wr = count($settings['widget_r']);
+    $header(array('title'=>$title,'bland'=>$bland,'head'=>$data['header'],'menu'=>$menu));
     if( $wl+$wr > 0 ){ 
         echo "<div class=\"row\">\n";
-        //widget-l
+        //widget_l
         $grid = 12;
         if( $wl > 0 ){
             $grid -= 2;
             echo "  <div class=\"col-xs-12 col-sm-2 col-md-2\">\n";
-            foreach( $settings['widget-l'] as $wgt ){
+            foreach( $settings['widget_l'] as $wgt ){
                 $widget( $wgt );
             }
             echo "  </div>\n";  
@@ -33,7 +33,7 @@
     //main contents
     $cnt = 0;
     $ec = 0;
-    $_contents = dbSortedContents(0);
+    $_contents = dbSortedContents(array('ym'=>$ym));
     foreach( $_contents as $value){
         //投稿ページのみ
         if( $value['mode'] === 0 ){
@@ -64,7 +64,7 @@
     echo "  </div>\n";
     if( $wr > 0 ){
         echo "  <div class=\"col-xs-12 col-sm-2 col-md-2\">\n";
-        foreach( $settings['widget-r'] as $wgt ){
+        foreach( $settings['widget_r'] as $wgt ){
             $widget( $wgt );
         }
         echo "  </div>\n";

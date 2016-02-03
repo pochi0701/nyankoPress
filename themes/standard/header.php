@@ -22,6 +22,6 @@
 <body>
     <?php
     global $navbar;
-    $navbar($title,$bland,$menu);
+    $navbar(array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
     ?>
     <div class="container">

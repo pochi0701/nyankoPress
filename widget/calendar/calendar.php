@@ -1,6 +1,6 @@
 <?php
 //カレンダーを表示する
-list($y,$m) = (isset($_GET['ym']))?explode('/',$_GET['ym']):array(null,null);
+list($y,$m) = (isset($_GET['ym']))?explode('-',$_GET['ym']):array(null,null);
 if( ! isset($m) ) $m = date('m');
 if( ! isset($y) ) $y = date('Y');
 $ld = date("t", mktime(0, 0, 0, $m, 1, $y));//最終日
@@ -11,9 +11,9 @@ for( $i = 0 ; $i < 42 ; $i++ ){
 }
 //処理用
 $ln = floor(($ld+$w-1)/7)+1;
-if( date("Y/m")>date("Y/m",mktime(0,0,0,$m+1,0,$y))){
-    $nym = date('Y/m',mktime(0,0,0,$m+1,1,$y));
+if( date("Y-m")>date("Y-m",mktime(0,0,0,$m+1,0,$y))){
+    $nym = date('Y-m',mktime(0,0,0,$m+1,1,$y));
 }
-$lym = date('Y/m',mktime(0,0,0,$m-1,1,$y));
+$lym = date('Y-m',mktime(0,0,0,$m-1,1,$y));
 //何故かこのパスのincludeでうまくいくんだよね
-include('calender.html');
+include('calendar.html');

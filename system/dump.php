@@ -2,7 +2,7 @@
 global $syshdr;
 global $sysftr;
 global $_contents;
-$syshdr($title,$bland,$menu,'');
+$syshdr(array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
 echo "<table>\n";
 foreach( $_contents as $value){
     echo "<tr>";

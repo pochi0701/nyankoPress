@@ -76,7 +76,7 @@ function dbGetContents($page)
     if( $target >= 0 ){
         return $_contents[$target];
     }else{
-        return array('page'=>0,'mode'=>0,'title'=>'','contents'=>'','eyecatch'=>'','regdate'=>date("Y-m-d H:i:s"),'moddate'=>date("Y-m-d H:i:s"));
+        return array('page'=>0,'mode'=>0,'title'=>'','contents'=>'','eyecatch'=>'','regdate'=>date("Y-m-d H:i:s"),'moddate'=>date("Y-m-d H:i:s"),'native'=>0);
     }
 }
 function dbDelContents($page)
@@ -91,11 +91,17 @@ function dbDelContents($page)
     file_put_contents("db/contents.txt",json_encode($_contents));
 }
 //
-function dbSortedContents($type)
+function dbSortedContents($param)
 {
    global $_contents;
+   extract($param);
    //投稿記事のみ
-   $_contents2 = $_contents;
+   $_contents2 = array();
+   foreach( $_contents as $value){
+       if( $value['mode'] != 0 ) continue;
+       if( isset($ym) && date('Ym',strtotime($value['regdate'])) != date('Ym',strtotime($ym)) ) continue;
+       $_contents2[] = $value;
+   }
    //ソート
    $cnt = count($_contents2);
    for( $i = 0 ; $i < $cnt-1 ; $i++ ){
@@ -139,29 +145,35 @@ function dbGetMenu($mode)
 //設定
 $theme = "ver001";
 $blog  = "テストブログ";
-$settings = array();
 $settings['theme']    = 'standard';
 $settings['title']   = "テストブログ";
-$settings['widget-l'] = array('calendar','youtube');
-$settings['widget-r'] = array('calendar');
-$settings['widget-fixl'] = array();
-$settings['widget-fixr'] = array();
-$settings['footer']  = array();
-$header  = function($title,$bland,$menu,$head){global $theme;include "themes/{$theme}/header.php";};
-$footer  = function()                         {global $theme;include "themes/{$theme}/footer.php";};
-$disp    = function($title,$bland,$menu,$data){global $theme;include "themes/{$theme}/main.php";};
-$mainidx = function($title,$bland,$menu,$data){global $theme;include "themes/{$theme}/mainidx.php";};
-$carousel= function($slides)                  {global $theme;include "themes/{$theme}/carousel.php";};
-$navbar  = function($title,$bland,$menu)      {global $theme;include "themes/{$theme}/navbar.php";};
+$settings['widget_l'] = array();
+$settings['widget_r'] = array('calendar','youtube');
+$settings['widget_fixl'] = array();
+$settings['widget_fixr'] = array();
+$settings['footer']    = array();
+$attribute['theme']    = array('テーマ'=>'T');
+$attribute['title']    = array('ブログタイトル'=>'T');
+$attribute['widget_l'] = array('ブログウィジット右'=>'TA');
+$attribute['widget_r'] = array('ブログウィジット左'=>'TA');
+$attribute['widget_fixl'] = array('固定ページウィジット右'=>'TA');
+$attribute['widget_fixr'] = array('固定ページウィジット左'=>'TA');
+$attribute['footer']      = array('フッターウィジット'=>'TA');
+$header  = function($params){global $theme;extract($params);include "themes/{$theme}/header.php";};//$title,$bland,$menu,$head
+$footer  = function()       {global $theme;include "themes/{$theme}/footer.php";};
+$disp    = function($params){global $theme;extract($params);include "themes/{$theme}/main.php";};//$title,$bland,$menu,$data
+$mainidx = function($params){global $theme;extract($params);include "themes/{$theme}/mainidx.php";};//$title,$bland,$menu,$data
+$carousel= function($slides){global $theme;include "themes/{$theme}/carousel.php";};
+$navbar  = function($params){global $theme;extract($params);include "themes/{$theme}/navbar.php";};//$title,$bland,$menu
 
-$syshdr  = function($title,$bland,$menu,$head)      {include "system/header.php";};
-$sysftr  = function()                               {include "system/footer.php";};
-$sysnav  = function($title,$bland,$menu)            {include "system/navbar.php";};
-$editpage= function($title,$text,$head,$img,$mode,$page,$native)  {include "system/editpage.html";};
-$edit    = function($title,$bland,$menu,$mode,$page){include "system/edit.php";};
-$upload  = function($title,$bland,$menu)            {include "system/upload.php";};
-$editmenu= function($title,$bland,$menu)            {include "system/editmenu.php";};
-$widget  = function($name)                          {include "widget/{$name}/{$name}.php";};
+$syshdr  = function($params){extract($params);include "system/header.php";};
+$sysftr  = function()       {include "system/footer.php";};
+$sysnav  = function($params){extract($params);include "system/navbar.php";};
+$editpage= function($params){extract($params);include "system/editpage.html";};
+$edit    = function($params){extract($params);include "system/edit.php";};
+$upload  = function($params){extract($params);include "system/upload.php";};
+$editmenu= function($params){extract($params);include "system/editmenu.php";};
+$widget  = function($name)  {include "widget/{$name}/{$name}.php";};
 
 //echo with evaluate
 $native = function($data) {

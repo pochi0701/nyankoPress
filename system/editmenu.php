@@ -2,7 +2,7 @@
 global $syshdr;
 global $sysftr;
 global $_contents;
-$syshdr($title,$bland,$menu,'');
+$syshdr(array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
 $submit = array_get($_POST,'submit');
 $sbland = array_get($_POST,'bland');
 $text   = array_get($_POST,'text');

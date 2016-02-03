@@ -1,6 +1,5 @@
-    <div class="container">
       <!-- 1.ナビゲーションバーの設定 -->
-      <nav class="navbar navbar-inverse">
+      <nav class="navbar navbar-inverse navbar-static-top">
         <!-- 2.ヘッダ情報 -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-menu-1">
@@ -58,4 +57,3 @@
           </ul>
         </div>
       </nav>
-    </div>

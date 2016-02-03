@@ -4,9 +4,9 @@ global $footer;
 global $widget;
 global $native;
 global $settings;
-$header($data['title'],$bland,$menu,$data['header']);
-$fixl = count($settings['widget-fixl']);
-$fixr = count($settings['widget-fixr']);
+$header(array('title'=>$data['title'],'bland'=>$bland,'head'=>$data['header'],'menu'=>$menu));
+$fixl = count($settings['widget_fixl']);
+$fixr = count($settings['widget_fixr']);
 //left widget
 if( $fixl+$fixr>0){
     $grid = 12;
@@ -14,7 +14,7 @@ if( $fixl+$fixr>0){
     if( $fixl > 0 ){
         $grid -= 2;
         echo "  <div class=\"col-xs-12 col-sm-2 col-md-2\">\n";
-        foreach( $settings['widget-fixl'] as $wgt ){
+        foreach( $settings['widget_fixl'] as $wgt ){
             $widget( $wgt );
         }
         echo "  </div>\n";
@@ -45,7 +45,7 @@ if( $data['native'] == 'on'){
 //right widget
 if( $fixr > 0 ){
     echo "  <div class=\"col-xs-12 col-sm-2 col-md-2\">\n";
-    foreach( $settings['widget-fixr'] as $wgt ){
+    foreach( $settings['widget_fixr'] as $wgt ){
         $widget( $wgt );
     }
     echo "  </div>\n";

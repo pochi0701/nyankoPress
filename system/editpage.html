@@ -12,7 +12,16 @@
         <div class="col-sm-offset-2 col-sm-10">
           <div class="checkbox">
             <label>
-              <input type="checkbox" name="native"<?php echo ($native=='on')?' checked':''?>>php native
+              <input type="checkbox" name="native"<?php echo (($native==='on')?' checked':'');?>>php native
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="ptag">add &lt;p&gt;tag and &lt;br&gt;tag.
             </label>
           </div>
         </div>
