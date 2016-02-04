@@ -1,4 +1,7 @@
 <?php
+include('settings.php');
+extract($settings);
+$link = ($link=='on')?true:false;
 //カレンダーを表示する
 list($y,$m) = (isset($_GET['ym']))?explode('-',$_GET['ym']):array(null,null);
 if( ! isset($m) ) $m = date('m');

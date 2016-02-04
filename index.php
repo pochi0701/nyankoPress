@@ -15,13 +15,12 @@ if( $mode >= 0 && isset($_SESSION['login'])){
         $cnt += 1;
     }
     if     ( $mode <= 3 ) $edit    (array('title'=>$title,'bland'=>$bland,'menu'=>$menu,'mode'=>$mode,'page'=>$page));
-    else if( $mode == 4 ) $editmenu(array('title'=>$title,'bland'=>$bland,'menu'=>$menu)); 
-    else if( $mode == 5 ) $upload  (array('title'=>$title,'bland'=>$bland,'menu'=>$menu)); 
+    else if( $mode == 4 ) $upload  (array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
+    else if( $mode == 5 ) $setting (array('title'=>$title,'bland'=>$bland,'menu'=>$menu)); 
     else if( $mode == 6 ) {
-          unset($_SESSION['login']);
+          unset($_SESSION);
+          session_destroy();
           header("Location:index.php");
-    }else if( $mode == 7 ){
-        include('system/dump.php');
     }
 //表示
 }else{

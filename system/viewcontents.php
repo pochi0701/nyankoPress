@@ -1,9 +1,8 @@
+<table class="table table-striped">
+<thead><tr><th>Page</th><th>Mode</th><th>Title</th><th>EyeCatch</th><th>登録日</th><th>変更日</th><th>Native</th></tr></thead>
+<tbody>
 <?php
-global $syshdr;
-global $sysftr;
 global $_contents;
-$syshdr(array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
-echo "<table>\n";
 foreach( $_contents as $value){
     echo "<tr>";
     echo "<td>{$value['page']}</td>";
@@ -15,5 +14,6 @@ foreach( $_contents as $value){
     echo "<td>{$value['native']}</td>";
     echo "</tr>\n";
 }
-echo "</table>\n";
-$sysftr();
+?>
+</tbody>
+</table>

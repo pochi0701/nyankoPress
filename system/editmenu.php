@@ -2,7 +2,6 @@
 global $syshdr;
 global $sysftr;
 global $_contents;
-$syshdr(array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
 $submit = array_get($_POST,'submit');
 $sbland = array_get($_POST,'bland');
 $text   = array_get($_POST,'text');
@@ -29,10 +28,12 @@ if( strlen($submit) ){
             }
         }
     }
-    $tmenu['bland'] = $sbland;
-    $tmenu['menu']  = $smenu;
-    dbSetMenu($tmenu);
-    header("Location:../index.php?mode=1");
+    //$tmenu['bland'] = $sbland;
+    //$tmenu['menu']  = $smenu;
+    //dbSetMenu($tmenu);
+    dbSetMenu(array('bland'=>$sbland,'menu'=>$smenu));
+    //header("Location:../index.php?mode=1");
+    echo "設定完了";
 //編集
 }else{    
     list($sbland,$smenu) = dbGetMenu(-1);
@@ -55,5 +56,4 @@ if( strlen($submit) ){
     }
     include( "editmenu.html");
 }
-$sysftr();
 

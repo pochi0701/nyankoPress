@@ -1,19 +1,17 @@
 <?php
-/////////////////////////////////////////////////////////////////////////////////////////
 //リクエスト文字列取得
 function array_get($arr, $key) {
     return (array_key_exists($key, $arr)) ?    $arr[$key] : null;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 //リクエスト数値取得
 function array_getn($arr, $key) {
     return (array_key_exists($key, $arr)) ?    $arr[$key] : -1;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-//DB保存
+//グローバル
 $_contents=array();
 $_menu    =array();
 $_setting =array();
+$_widgetcnt = 0;
 function dbLoad()
 {
     global $_contents;
@@ -130,8 +128,8 @@ function dbGetMenu($mode)
             "投稿一覧"       => "index.php?mode=1",
             "固定ページ編集" => "index.php?mode=2",
             "固定ページ一覧" => "index.php?mode=3",
-            "メニュー編集"   => "index.php?mode=4",
-            "メディア管理"   => "index.php?mode=5\" target=\"blank",
+            "メディア管理"   => "index.php?mode=4\" target=\"blank",
+            "設定"           => "index.php?mode=5",
             "ログアウト"     => "index.php?mode=6"
         );
     //通常時。初回は投稿画面へ
@@ -143,28 +141,21 @@ function dbGetMenu($mode)
     return array($bland,$menu);
 }
 //設定
-$theme = "ver001";
-$blog  = "テストブログ";
-$settings['theme']    = 'standard';
-$settings['title']   = "テストブログ";
-$settings['widget_l'] = array();
-$settings['widget_r'] = array('calendar','youtube');
-$settings['widget_fixl'] = array();
-$settings['widget_fixr'] = array();
-$settings['footer']    = array();
-$attribute['theme']    = array('テーマ'=>'T');
-$attribute['title']    = array('ブログタイトル'=>'T');
-$attribute['widget_l'] = array('ブログウィジット右'=>'TA');
-$attribute['widget_r'] = array('ブログウィジット左'=>'TA');
-$attribute['widget_fixl'] = array('固定ページウィジット右'=>'TA');
-$attribute['widget_fixr'] = array('固定ページウィジット左'=>'TA');
-$attribute['footer']      = array('フッターウィジット'=>'TA');
-$header  = function($params){global $theme;extract($params);include "themes/{$theme}/header.php";};//$title,$bland,$menu,$head
+include('settings.php');
+//general
+$theme = $settings['theme'];
+$blog  = $settings['title'];
+//CDN
+$bootstrap_css = $settings['bootstrap_css'];
+$bootstrap_js  = $settings['bootstrap_js'];
+$jquery_js     = $settings['jquery'];
+
+$header  = function($params){global $theme;extract($params);include "themes/{$theme}/header.php";};
 $footer  = function()       {global $theme;include "themes/{$theme}/footer.php";};
-$disp    = function($params){global $theme;extract($params);include "themes/{$theme}/main.php";};//$title,$bland,$menu,$data
-$mainidx = function($params){global $theme;extract($params);include "themes/{$theme}/mainidx.php";};//$title,$bland,$menu,$data
+$disp    = function($params){global $theme;extract($params);include "themes/{$theme}/main.php";};
+$mainidx = function($params){global $theme;extract($params);include "themes/{$theme}/mainidx.php";};
 $carousel= function($slides){global $theme;include "themes/{$theme}/carousel.php";};
-$navbar  = function($params){global $theme;extract($params);include "themes/{$theme}/navbar.php";};//$title,$bland,$menu
+$navbar  = function($params){global $theme;extract($params);include "themes/{$theme}/navbar.php";};
 
 $syshdr  = function($params){extract($params);include "system/header.php";};
 $sysftr  = function()       {include "system/footer.php";};
@@ -173,6 +164,7 @@ $editpage= function($params){extract($params);include "system/editpage.html";};
 $edit    = function($params){extract($params);include "system/edit.php";};
 $upload  = function($params){extract($params);include "system/upload.php";};
 $editmenu= function($params){extract($params);include "system/editmenu.php";};
+$setting = function($params){extract($params);include "system/setting.php";};
 $widget  = function($name)  {include "widget/{$name}/{$name}.php";};
 
 //echo with evaluate
@@ -183,8 +175,32 @@ $native = function($data) {
   fclose($fp);
 };
 
-//CDN
-$bootstrap_var = "3.0.0";
-$bootstrap_css = "http://netdna.bootstrapcdn.com/bootstrap/{$bootstrap_var}/css/bootstrap.min.css";
-$bootstrap_js  = "http://netdna.bootstrapcdn.com/bootstrap/{$bootstrap_var}/js/bootstrap.min.js";
-$jquery_js     = "http://code.jquery.com/jquery-1.11.1.min.js";
+//filter
+function entag($text){
+    $ary = explode("\r\n", $text); // とりあえず行に分割
+    $cnt = count($ary);
+    $lst = 0;
+    $tag = 0;
+    $xdv = 1;
+    for($i = 0 ; $i<$cnt ; $i++ ){
+        $str = $ary[$i];
+        $len = strlen($str);
+        if( strpos($str,'<div') !== false ) $xdv = 0;
+        if( $len*$xdv ){
+           if( $lst ){
+               $ary[$i-1] .= '<br>';
+           }else{
+               $ary[$i] = "<p>{$ary[$i]}";
+               $tag =1;
+           }
+        }else if( $tag ){
+           $ary[$i-1] .= '</p>';
+           $tag = 0;
+        }
+        $lst = $len*$xdv;
+        if( strpos($str,'</div') !== false ) $xdv= 1;
+    }
+    if( $tag ) $ary[$cnt-1] .= "</p>";
+    return implode("\n",$ary);
+}
+
