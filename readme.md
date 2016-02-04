@@ -14,16 +14,16 @@ $header  = function($title,$bland,$menu){global $theme;include "themes/{$theme}/
 
 ## themes
 テーマはthemes/テーマ名で自由に作ってください。footer,header,main,navbar,mainidxを最低作ればいいかと思います。
-現在standardに加え固定ナビゲーションのver001が有効です。これもreq.phpを直接書き換えてください。
+現在standardに加え固定ナビゲーションのver001が有効です。設定画面から変更可能です。
 
 ## widget
-ウィジットはBootstrapで投稿コンテンツ右、左、ブログページ右、左、フッタに配置可能です。今のところカレンダーとyoutubeを作成しました。これからもう少し増やします。
+ウィジットはBootstrapで投稿コンテンツ右、左、ブログページ右、左、フッタに配置可能です。今のところカレンダーとyoutubeを作成しました。これからもう少し増やします。設定は画面の設定から行えます。
 
 ## database
 データベースは使っていません。JSONでファイルに保存してます。PHP5.1くらいからSQLITE使えるそうなので、そのうちに入れるかも知れません。
 
 ## misc
-ページ編集時にnativeフラグを用意しました。nativeにチェックを入れるとphpのコードが有効になり、<?php .. ?>を記述できます。
+ページ編集時にnativeフラグを用意しました。nativeにチェックを入れるとphpのコードが有効になり、<?php .. ?>を記述できます。また、P,BRタグを挿入できるフィルタも入れました。簡単な文書は<p>で囲まれます。
 
 サンプルサイト http://neon.cx
 
