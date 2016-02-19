@@ -5,37 +5,36 @@ global $editpage;
 global $_contents;
 $syshdr(array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
 $submit = array_get($_POST,'submit');
-$stitle = array_get($_POST,'title');
-$stext  = array_get($_POST,'text');
-$shead  = array_get($_POST,'head');
-$simg   = array_get($_POST,'simg');
-$snativ = array_get($_POST,'native');
-$ptag   = array_get($_POST,'ptag');
+$title    = array_get($_POST,'title');
+$text     = array_get($_POST,'text');
+$head     = array_get($_POST,'head');
+$eyecatch = array_get($_POST,'eyecatch');
+$native   = array_get($_POST,'native');
+$ptag     = array_get($_POST,'ptag');
 //投稿された
 if( strlen($submit)>0 ){
-    if( strlen($simg) == 0 ){
-        $simg = 'http://placehold.it/320x240';
+    if( strlen($eyecatch) == 0 ){
+        $eyecatch = 'http://placehold.it/320x240';
     }
-    if( strlen($ptag) ) $stext = entag($stext);
-    $page = dbAddContents(floor($mode/2),$stitle,$stext,$shead,$simg,$page,$snativ);
+    if( strlen($ptag) ) $text = entag($text);
+    $page = dbAddContents(array('mode'=>$mode,'title'=>$title,'contents'=>$text,'header'=>$head,'eyecatch'=>$eyecatch,'page'=>$page,'native'=>$native));
 }
 //編集
-if( $mode == 0 || $mode == 2){
+if( $mode == 0 || $mode == 1){
     if( $page >= 0 ){
         $data = dbGetContents($page);
-        $mode = $data['mode'];
-        $stitle = $data['title'];
-        $shead  = $data['header'];
-        $stext  = $data['contents'];
-        $simg   = $data['eyecatch'];        
-        $snativ = $data['native'];        
+        $mode     = $data['mode'];
+        $title    = $data['title'];
+        $head     = $data['header'];
+        $text     = $data['contents'];
+        $eyecatch = $data['eyecatch'];        
+        $native   = $data['native'];        
     }
-    $editpage(array('title'=>$stitle,'text'=>$stext,'head'=>$shead,'img'=>$simg,'mode'=>$mode*2,'page'=>$page,'native'=>$snativ));
-}else if ($mode == 1 || $mode == 3){
-    $del = array_getn($_GET,'del');
-    if( $del > 0 && $page > 0 ){
+    $editpage(array('title'=>$title,'text'=>$text,'head'=>$head,'eyecatch'=>$eyecatch,'mode'=>$mode,'page'=>$page,'native'=>$native));
+}else if ($mode == 2 || $mode == 3){
+    if( array_getn($_GET,'del') > 0 && $page > 0 ){
         dbDelContents($page);
-    }        
+    }
     include( "displist.html");
 }
 $sysftr();

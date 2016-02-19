@@ -7,6 +7,7 @@
     $wl = count($settings['widget_l']);
     $wr = count($settings['widget_r']);
     $header(array('title'=>$title,'bland'=>$bland,'head'=>$data['header'],'menu'=>$menu));
+    if( isset($_SESSION) && isset($_SESSION['login']) && $_SESSION['login'] == 1 )  echo "<a class = \"btn btn-primary\" href=\"index.php?mode={$data['mode']}&p={$data['page']}\">編集</a>\n";
     if( $wl+$wr > 0 ){ 
         echo "<div class=\"row\">\n";
         //widget_l
@@ -36,7 +37,7 @@
     $_contents = dbSortedContents(array('ym'=>$ym));
     foreach( $_contents as $value){
         //投稿ページのみ
-        if( $value['mode'] === 0 ){
+        if( $value['mode'] == 0 ){
             if( $cnt % 3 == 0 ){
                 echo "        <div class=\"row\">\n";
                 $ec += 1;

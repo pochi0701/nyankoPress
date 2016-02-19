@@ -1,6 +1,6 @@
     <div class="container">
       <!-- 1.ナビゲーションバーの設定 -->
-      <nav class="navbar">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
         <!-- 2.ヘッダ情報 -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-menu-1">
@@ -20,7 +20,8 @@
                  foreach($menu as $key => $value){
                    if( isset($okey) ){
                      if( is_array( $value ) ){
-                       echo "<li class=\"dropdown\">\n";
+                       $flag = array_key_exists($target,$value);
+                       echo "<li class=\"dropdown".(($flag)?" active":"")."\">\n";
                        echo "  <a href=\"{$ovalue}\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n";
                        echo "  <span class=\"link-menu\">{$okey}<b class=\"caret\"></b></span>\n";
                        echo "  </a>\n";
@@ -33,7 +34,7 @@
                        unset($okey);
                        unset($ovalue);
                      }else{
-                       if( $okey === $title ){
+                       if( $okey === $target ){
                          echo "<li class=\"active\"><a href=\"{$ovalue}\">{$okey}</a></li>\n";
                        }else{
                          echo "<li><a href=\"{$ovalue}\">{$okey}</a></li>\n";
@@ -48,7 +49,7 @@
                  }
                  //残り要素
                  if( ! is_null($okey) ){
-                   if( $okey === $title ){
+                   if( $okey === $target ){
                      echo "<li class=\"active\"><a href=\"{$ovalue}\">{$okey}</a></li>\n";
                    }else{
                      echo "<li><a href=\"{$ovalue}\">{$okey}</a></li>\n";

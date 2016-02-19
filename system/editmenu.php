@@ -32,7 +32,6 @@ if( strlen($submit) ){
     //$tmenu['menu']  = $smenu;
     //dbSetMenu($tmenu);
     dbSetMenu(array('bland'=>$sbland,'menu'=>$smenu));
-    //header("Location:../index.php?mode=1");
     echo "設定完了";
 //編集
 }else{    
@@ -48,7 +47,7 @@ if( strlen($submit) ){
     }
     $text .= "\n";
     foreach( $_contents as $value ){
-        if( $value['mode'] == 1 ){
+        if( $value['mode'] == 1 ){ //固定ページのみ
             if( strpos($text,$value['title']) === false && strpos($text,"index.php?p={$value['page']}") === false ){
                 $text .= "{$value['title']},index.php?p={$value['page']}\n";
             }

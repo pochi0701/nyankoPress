@@ -5,6 +5,7 @@ global $widget;
 global $native;
 global $settings;
 $header(array('title'=>$data['title'],'bland'=>$bland,'head'=>$data['header'],'menu'=>$menu));
+if( isset($_SESSION) && isset($_SESSION['login']) && $_SESSION['login'] == 1 )  echo "<a class = \"btn btn-primary\" href=\"index.php?mode={$data['mode']}&p={$data['page']}\">編集</a>\n";
 $fixl = count($settings['widget_fixl']);
 $fixr = count($settings['widget_fixr']);
 //left widget
@@ -41,6 +42,9 @@ if( $data['native'] == 'on'){
     $native($data['contents']);
 }else{
     echo $data['contents'];
+}
+if( $fixl+$fixr>0 ){
+    echo "</div>\n";//-div
 }
 //right widget
 if( $fixr > 0 ){

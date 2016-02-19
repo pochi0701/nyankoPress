@@ -1,0 +1,1 @@
+{"bland":"NEON.CX","menu":{"\u56fa\u5b9a\u30da\u30fc\u30b8\u30a4\u30f3\u30c7\u30c3\u30af\u30b9":"index.php?p=0","\u56fa\u5b9a\u30da\u30fc\u30b8":"index.php?p=1","\u30ab\u30eb\u30fc\u30bb\u30eb":"index.php?p=3","\u30ed\u30b0\u30a4\u30f3":"system\/login.php"}}

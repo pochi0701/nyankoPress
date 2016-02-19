@@ -1,5 +1,5 @@
   <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -8,7 +8,6 @@
               <div class="modal-body">
                   <p>記事を削除しようとしています。</p>
                   <p>削除してよろしいですか？</p>
-
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -23,12 +22,11 @@
     </thead>
     <tbody>
 <?php
-    $edit = floor($mode/2);
-    $edit2 = $edit*2;
+    $rmode = $mode % 2;
     foreach( $_contents as $value){
-        if( $value['mode'] == $edit ){
-            echo "<tr><td><a href=\"index.php?mode={$edit2}&p={$value['page']}\">{$value['page']}</a></td>";
-            echo "<td><a href=\"index.php?mode={$edit2}&p={$value['page']}\">{$value['title']}</a></td>";
+        if( $value['mode'] == $rmode ){
+            echo "<tr><td><a href=\"index.php?mode={$rmode}&p={$value['page']}\">{$value['page']}</a></td>";
+            echo "<td><a href=\"index.php?mode={$rmode}&p={$value['page']}\">{$value['title']}</a></td>";
             echo "<td><a href=\"#\" data-href=\"index.php?mode={$mode}&p={$value['page']}&del=1\" data-toggle=\"modal\" data-target=\"#confirm-delete\">削除</a></td></tr>\n";
         }
     }

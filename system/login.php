@@ -6,6 +6,10 @@ $pw=array_get($_POST,"password");
 $em=array_get($_POST,"email");
 include("info.php");
 $msg = "";
+if( array_get($_GET,'force') == '' && isset($_SESSION) && array_getn($_SESSION,'login') == 1 ){
+    header("Location:../index.php?mode=0");
+    exit;
+}
 if( ! isset($login) ){
     $msg = "IDとパスワードを記録します。";
 }   

@@ -27,6 +27,6 @@
 <body style="padding-top:53px;">
     <?php
     global $navbar;
-    $navbar(array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
+    $navbar(array('target'=>$title,'bland'=>$bland,'menu'=>$menu));
     ?>
     <div class="container">

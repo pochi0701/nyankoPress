@@ -14,6 +14,6 @@
 <body>
     <?php
     global $sysnav;
-    $sysnav(array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
+    $sysnav(array('target'=>$title,'bland'=>$bland,'menu'=>$menu));
     ?>
     <div class="container">
