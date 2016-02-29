@@ -1,10 +1,10 @@
 NyankoPress
 =============
 
-にゃんこプレスは1500行程度のシンプルなCMSでPHPで書かれています。主な技術として１行テンプレートエンジンを使っています。１行テンプレートはテンプレートエンジンを１行で書く方法で、下記のように関数を使って構築されています。
+にゃんこプレスは2000行程度のシンプルなCMSでPHPで書かれています。主な技術として１行テンプレートエンジンを使っています。１行テンプレートはテンプレートエンジンを１行で書く方法で、下記のように関数を使って構築されています。
 
 ```php
-$header  = function($title,$bland,$menu){global $theme;include "themes/{$theme}/header.php";};
+$header  = function($param){global $theme;extract($param);include "themes/{$theme}/header.php";};
 ```
 
 この例ではテンプレートに引き渡す変数を指定してテンプレート側のheader.phpをincludeしてます。global変数$themeによってテーマは自由に変更可能です。
