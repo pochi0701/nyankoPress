@@ -1,0 +1,70 @@
+<form class="form-horizontal" role="form" method="post" action="">
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="snippet">select snippet</label>
+        <div class="col-sm-4">
+            <select class="form-control selectpicker" data-live-search="true" id="snippet">
+            <option value="---"></option>
+            <?php
+            foreach( $snplst as $key => $value){
+                echo "<option value=\"{$key}\">{$value['Title']}</option>\n";
+            }
+            ?>
+            </select>
+        </div>
+    </div>
+    <div id="spdesc"></div>
+    <div id="spdecl"></div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="sptext" >Code</label>
+        <div class="col-sm-10">
+           <textarea class="form-control" id="sptext" name="sptext" rows="5"></textarea>
+        </div>
+     </div>
+</form>
+<hr>
+<div id="sptarget"></div>
+<script>
+function hsc(ch){
+ch = ch.replace(/&/g,"&amp;") ;
+ch = ch.replace(/"/g,"&quot;") ;
+ch = ch.replace(/'/g,"&#039;") ;
+ch = ch.replace(/</g,"&lt;") ;
+ch = ch.replace(/>/g,"&gt;") ;
+return ch ;
+}
+$(function() {
+  var data = <?php echo json_encode($snplst);?>;
+  $('.selectpicker').on('change', function(){
+    var selected = $(this).find("option:selected").val();
+    var cd = data[selected]["Code"];
+    var dc  = '<div class="form-group">\n';
+        dc += ' <label class="col-sm-2 control-label" for="spdescription">Description</label>\n';
+        dc += ' <div class="col-sm-10 form-inline">\n';
+        dc += '  <input type="text" class="form-control" id="spdescription" name="title" maxlength="80" size="80" value="'+hsc(data[selected]["Description"])+'">\n';
+        dc += ' </div>\n';
+        dc += '</div>\n';
+    var is = "";
+    if( data[selected]["Declarations"] != undefined ){
+        for( var i = 0 ; i < data[selected]["Declarations"].length ; i++ ){
+            cd = cd.split("$"+data[selected]["Declarations"][i]["ID"]+"$").join(data[selected]["Declarations"][i]["Default"]);
+            is += '<div class="form-group">\n';
+            is += '<label class="col-sm-2 control-label" for="tid">'+((i==0)?"Decrarations":"")+'</label>\n';
+            is += '<div class="col-sm-2 form-inline">\n';
+            is += ' <input type="text" class="form-control" id="tid"   name="tid"   maxlength="20" size="20" value="'+hsc(data[selected]["Declarations"][i]["ID"])+'" placeholder="ID">\n';
+            is += '</div>\n';
+            is += '<div class="col-sm-3 form-inline">\n';
+            is += ' <input type="text" class="form-control" id="tToolTip"  name="tToolTip"  maxlength="20" size="20" value="'+hsc(data[selected]["Declarations"][i]["ToolTip"])+'" placeholder="説明">\n';
+            is += '</div>\n';
+            is += '<div class="col-sm-5 form-inline">\n';
+            is += ' <input type="text" class="form-control" id="tdefault"  name="tdifault"  maxlength="20" size="20" value="'+hsc(data[selected]["Declarations"][i]["Default"])+'" placeholder="省略値">\n';
+            is += '</div>\n';
+            is += '</div>\n';
+        }
+    }
+    document.getElementById("spdesc").innerHTML = dc;
+    document.getElementById("spdecl").innerHTML = is;
+    document.getElementById("sptext").innerHTML = cd;
+    document.getElementById("sptarget").innerHTML = cd;
+  });
+});
+</script>

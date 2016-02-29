@@ -167,7 +167,8 @@ $edit    = function($params){extract($params);include "system/edit.php";};
 $upload  = function($params){extract($params);include "system/upload.php";};
 $editmenu= function($params){extract($params);include "system/editmenu.php";};
 $setting = function($params){extract($params);include "system/setting.php";};
-$widget  = function($name)  {include "widget/{$name}/{$name}.php";};
+$widget  = function($params){extract($params);include "widget/{$name}/index.php";};
+$snippet = function($params){extract($params);include "system/snippet.php";};
 $atom    = function()       {include "system/atom.php";};
 
 //echo with evaluate

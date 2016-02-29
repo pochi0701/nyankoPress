@@ -1,6 +1,6 @@
     <div class="container">
       <!-- 1.ナビゲーションバーの設定 -->
-      <nav class="navbar navbar-inverse navbar-fixed-top">
+      <nav class="navbar navbar-default">
         <!-- 2.ヘッダ情報 -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-menu-1">

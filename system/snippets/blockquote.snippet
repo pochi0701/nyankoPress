@@ -1,0 +1,13 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('BlockQuote');
+$snippet['Author'] = stripslashes('POCHI');
+$snippet['Description'] = stripslashes('タイトル等に使うと便利な引用');
+$snippet['Declarations'][] = array('ID'=>stripslashes('content'),'ToolTip'=>stripslashes('コンテンツ1'),'Default'=>stripslashes('コンテンツ.'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('smallcontent'),'ToolTip'=>stripslashes('添え書き'),'Default'=>stripslashes('このように書けます'));
+$snippet['Code'] = stripslashes('
+<blockquote>
+  <p>$content$</p>
+  <small>$smallcontent$</small>
+</blockquote>
+');

@@ -1,5 +1,5 @@
 <?php
 $settings=array();
-$settings['link'] = 'on';
+$settings['link'] = stripslashes('on');
 $attribute=array();
-$attribute['link'] = array('前後月へのリンク'=>'C');
+$attribute['link']['前後月へのリンク'] = 'C';

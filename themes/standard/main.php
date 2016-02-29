@@ -6,6 +6,12 @@ global $native;
 global $settings;
 $header(array('title'=>$data['title'],'bland'=>$bland,'head'=>$data['header'],'menu'=>$menu));
 if( isset($_SESSION) && isset($_SESSION['login']) && $_SESSION['login'] == 1 )  echo "<a class = \"btn btn-primary\" href=\"index.php?mode={$data['mode']}&p={$data['page']}\">編集</a>\n";
+$main = count($settings['widget_main']);
+if( $main>0){
+    foreach( $settings['widget_main'] as $wgt ){
+        $widget( array('name'=>$wgt,'location' =>'top' ));
+    }
+}
 $fixl = count($settings['widget_fixl']);
 $fixr = count($settings['widget_fixr']);
 //left widget
@@ -16,7 +22,7 @@ if( $fixl+$fixr>0){
         $grid -= 2;
         echo "  <div class=\"col-xs-12 col-sm-2 col-md-2\">\n";
         foreach( $settings['widget_fixl'] as $wgt ){
-            $widget( $wgt );
+            $widget( array('name'=>$wgt) );
         }
         echo "  </div>\n";
     }
@@ -50,11 +56,16 @@ if( $fixl+$fixr>0 ){
 if( $fixr > 0 ){
     echo "  <div class=\"col-xs-12 col-sm-2 col-md-2\">\n";
     foreach( $settings['widget_fixr'] as $wgt ){
-        $widget( $wgt );
+        $widget( array('name'=>$wgt) );
     }
     echo "  </div>\n";
 }
 if( $fixl+$fixr>0 ){
     echo "</div>\n";//-row
+}
+if( $main>0){
+    foreach( $settings['widget_main'] as $wgt ){
+        $widget( array('name'=>$wgt,'location' =>'bottom' ) );
+    }
 }
 $footer();

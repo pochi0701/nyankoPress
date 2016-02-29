@@ -7,7 +7,7 @@
     echo"  <div class=\"form-group\">\n";
     echo"    <label class=\"col-sm-3 control-label\" for=\"{$id}\">{$dispname}</label>\n";
     echo"    <div class=\"col-sm-9 form-inline\">\n";
-    echo"      <input type=\"text\" class=\"form-control\" id=\"{$id}\" name=\"{$name}\" maxlength=\"80\" size=\"80\" value=\"{$value}\" placeholder=\"{$dispname}\"".(($req=='R')?' required':'').">\n";
+    echo"      <input type=\"text\" class=\"form-control\" id=\"{$id}\" name=\"{$name}\" maxlength=\"80\" size=\"80\" value=\"".htmlspecialchars($value)."\" placeholder=\"{$dispname}\"".(($req=='R')?' required':'').">\n";
     echo"    </div>\n";
     echo"  </div>\n";
     }else if ( $opt=='C'){
@@ -26,7 +26,29 @@
         foreach($settings as $key => $value) $settings[$key] = array_get($_POST,$key);
         foreach($settings as &$value) if(isset($value) && is_array($value)) $value = array_filter($value);
         unset($value);
-        file_put_contents("$path/settings.php","<?php\n\$settings = json_decode('".json_encode($settings)."',true);\n\$attribute = json_decode('".json_encode($attribute)."',true);\n");
+        //呼び出し
+        ob_start();
+        echo "<?php\n\$settings=array();\n";
+        foreach( $settings as $key => $value){
+            if( is_array($value) ){
+                $num = 0;
+                echo "\$settings['{$key}'] = array(";
+                foreach( $value as $value2){
+                    echo (($num++)?',':'')."stripslashes('".addslashes($value2)."')";
+                }
+                echo ");\n";
+             }else{
+                echo "\$settings['{$key}'] = stripslashes('".addslashes($value)."');\n";
+             }
+        }
+        echo "\$attribute=array();\n";
+        foreach( $attribute as $key => $value){
+            list($key2,$value2) = each($value);
+            echo "\$attribute['{$key}']['{$key2}'] = '{$value2}';\n";
+        }
+        $html = ob_get_contents();
+        ob_end_clean();
+        file_put_contents("$path/settings.php",$html);
     }
     //////////////////////////////////////////////////////////////////////////////////
     echo "<form class=\"form-horizontal\" role=\"form\" method=\"post\">\n";

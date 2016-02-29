@@ -1,0 +1,15 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('Panel');
+$snippet['Author'] = stripslashes('Eric Lebetsamer');
+$snippet['Description'] = stripslashes('While not always necessary, sometimes you need to put your DOM in a box. For those situations, try the panel component.');
+$snippet['Declarations'][] = array('ID'=>stripslashes('heading'),'ToolTip'=>stripslashes('The heading text for the panel'),'Default'=>stripslashes('Panel heading'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content'),'ToolTip'=>stripslashes('The content for the panel'),'Default'=>stripslashes('Lorem ipsum dolor sit amet, consectetur adipiscing elit.'));
+$snippet['Code'] = stripslashes('
+				<div class=\"panel panel-default\">
+	<div class=\"panel-heading\">$heading$</div>
+	<div class=\"panel-body\">
+		$content$
+	</div>
+</div>
+			');

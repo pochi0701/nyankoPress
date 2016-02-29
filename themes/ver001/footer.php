@@ -20,5 +20,15 @@
         });
     });
     </script>
+    <?php
+        global $settings;
+        global $widget;
+        $position = count($settings['widget_main']);
+        if( $position>0){
+            foreach( $settings['widget_main'] as $wgt ){
+                $widget( array('name'=>$wgt,'location' =>'footer' ) );
+            }
+        }
+    ?>
   </body>
 </html>

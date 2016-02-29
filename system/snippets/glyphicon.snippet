@@ -1,0 +1,9 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('Glyphicon');
+$snippet['Author'] = stripslashes('Eric Lebetsamer');
+$snippet['Description'] = stripslashes('Glyphicons are graphics included with Bootstrap.');
+$snippet['Declarations'][] = array('ID'=>stripslashes('icon'),'ToolTip'=>stripslashes('The name of the icon'),'Default'=>stripslashes('info-sign'));
+$snippet['Code'] = stripslashes('
+				<span class=\"glyphicon glyphicon-$icon$\"></span>
+			');

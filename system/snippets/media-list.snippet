@@ -1,0 +1,51 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('Media list');
+$snippet['Author'] = stripslashes('Eric Lebetsamer');
+$snippet['Description'] = stripslashes('Abstract object styles for building various types of components (like blog comments, Tweets, etc) that feature a left- or right-aligned image alongside textual content.');
+$snippet['Declarations'][] = array('ID'=>stripslashes('image1'),'ToolTip'=>stripslashes('The image for the first media object'),'Default'=>stripslashes('http://placehold.it/64x64'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('heading1'),'ToolTip'=>stripslashes('The heading for the first media object'),'Default'=>stripslashes('Media heading 1'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content1'),'ToolTip'=>stripslashes('The content for the first media object'),'Default'=>stripslashes('Lorem ipsum dolor sit amet, consectetur adipiscing elit.'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('image2'),'ToolTip'=>stripslashes('The image for second media object'),'Default'=>stripslashes('http://placehold.it/64x64'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('heading2'),'ToolTip'=>stripslashes('The heading for the second media object'),'Default'=>stripslashes('Media heading 2'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content2'),'ToolTip'=>stripslashes('The content for the second media object'),'Default'=>stripslashes('Morbi eget libero quis metus consectetur semper.'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('image3'),'ToolTip'=>stripslashes('The image for the third media object'),'Default'=>stripslashes('http://placehold.it/64x64'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('heading3'),'ToolTip'=>stripslashes('The heading for the third media object'),'Default'=>stripslashes('Media heading 3'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content3'),'ToolTip'=>stripslashes('The content for the third media object'),'Default'=>stripslashes('Suspendisse ullamcorper massa eget eleifend iaculis.'));
+$snippet['Code'] = stripslashes('
+				<ul class=\"media-list\">
+	<li class=\"media\">
+		<div class=\"media-left\">
+			<a href=\"#\">
+				<img class=\"media-object\" src=\"$image1$\">
+			</a>
+		</div>
+		<div class=\"media-body\">
+			<h4 class=\"media-heading\">$heading1$</h4>
+			$content1$
+		</div>
+	</li>
+	<li class=\"media\">
+		<div class=\"media-right\">
+			<a href=\"#\">
+				<img class=\"media-object\" src=\"$image2$\">
+			</a>
+		</div>
+		<div class=\"media-body\">
+			<h4 class=\"media-heading\">$heading2$</h4>
+			$content2$
+		</div>
+	</li>
+	<li class=\"media\">
+		<div class=\"media-left\">
+			<a href=\"#\">
+				<img class=\"media-object\" src=\"$image3$\">
+			</a>
+		</div>
+		<div class=\"media-body\">
+			<h4 class=\"media-heading\">$heading3$</h4>
+			$content3$
+		</div>
+	</li>
+</ul>
+			');

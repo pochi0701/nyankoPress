@@ -1,0 +1,16 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('Form group horizontal');
+$snippet['Author'] = stripslashes('Eric Lebetsamer');
+$snippet['Description'] = stripslashes('A form group with an input and a label, meant for use in a horizontal form.');
+$snippet['Declarations'][] = array('ID'=>stripslashes('id'),'ToolTip'=>stripslashes('ID of the input'),'Default'=>stripslashes('form-group-input'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('label'),'ToolTip'=>stripslashes('Text for the label'),'Default'=>stripslashes('My label'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('type'),'ToolTip'=>stripslashes('Type of the input'),'Default'=>stripslashes('text'));
+$snippet['Code'] = stripslashes('
+				<div class=\"form-group\">
+	<label class=\"col-sm-2 control-label\" for=\"$id$\">$label$</label>
+	<div class=\"col-sm-10\">
+		<input type=\"$type$\" class=\"form-control\" id=\"$id$\" placeholder=\"$label$\">
+	</div>
+</div>
+			');

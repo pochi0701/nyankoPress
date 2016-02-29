@@ -1,0 +1,15 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('List group');
+$snippet['Author'] = stripslashes('Eric Lebetsamer');
+$snippet['Description'] = stripslashes('List groups are a flexible and powerful component for displaying not only simple lists of elements, but complex ones with custom content.');
+$snippet['Declarations'][] = array('ID'=>stripslashes('content1'),'ToolTip'=>stripslashes('Item 1 content'),'Default'=>stripslashes('Lorem ipsum dolor sit amet, consectetur adipiscing elit.'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content2'),'ToolTip'=>stripslashes('Item 2 content'),'Default'=>stripslashes('Morbi eget libero quis metus consectetur semper.'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content3'),'ToolTip'=>stripslashes('Item 3 content'),'Default'=>stripslashes('Suspendisse ullamcorper massa eget eleifend iaculis.'));
+$snippet['Code'] = stripslashes('
+				<ul class=\"list-group\">
+	<li class=\"list-group-item\">$content1$</li>
+	<li class=\"list-group-item\">$content2$</li>
+	<li class=\"list-group-item\">$content3$</li>
+</ul>
+			');

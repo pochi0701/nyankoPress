@@ -1,0 +1,16 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('Collapsible div');
+$snippet['Author'] = stripslashes('Eric Lebetsamer');
+$snippet['Description'] = stripslashes('Get base styles and flexible support for collapsible components like accordions and navigation.');
+$snippet['Declarations'][] = array('ID'=>stripslashes('id'),'ToolTip'=>stripslashes('ID of the collapse object'),'Default'=>stripslashes('collapse'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('heading'),'ToolTip'=>stripslashes('The heading for the collapse object'),'Default'=>stripslashes('Accordion heading 1'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content'),'ToolTip'=>stripslashes('The content for the collapse object'),'Default'=>stripslashes('Lorem ipsum dolor sit amet, consectetur adipiscing elit.'));
+$snippet['Code'] = stripslashes('
+				<button type=\"button\" class=\"btn btn-default\" data-toggle=\"collapse\" data-target=\"#$id$\">
+	$heading$
+</button>
+<div id=\"$id$\" class=\"collapse\">
+	$content$
+</div>
+			');

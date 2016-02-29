@@ -1,0 +1,58 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('Accordion');
+$snippet['Author'] = stripslashes('Eric Lebetsamer');
+$snippet['Description'] = stripslashes('Using the collapse plugin, we built a simple accordion by extending the panel component.');
+$snippet['Declarations'][] = array('ID'=>stripslashes('id'),'ToolTip'=>stripslashes('ID of the modal'),'Default'=>stripslashes('collapse'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('heading1'),'ToolTip'=>stripslashes('The heading for the first accordion object'),'Default'=>stripslashes('Accordion heading 1'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content1'),'ToolTip'=>stripslashes('The content for the first accordion object'),'Default'=>stripslashes('Lorem ipsum dolor sit amet, consectetur adipiscing elit.'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('heading2'),'ToolTip'=>stripslashes('The heading for the second accordion object'),'Default'=>stripslashes('Accordion heading 2'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content2'),'ToolTip'=>stripslashes('The content for the second accordion object'),'Default'=>stripslashes('Morbi eget libero quis metus consectetur semper.'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('heading3'),'ToolTip'=>stripslashes('The heading for the third accordion object'),'Default'=>stripslashes('Accordion heading 3'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content3'),'ToolTip'=>stripslashes('The content for the third accordion object'),'Default'=>stripslashes('Suspendisse ullamcorper massa eget eleifend iaculis.'));
+$snippet['Code'] = stripslashes('
+				<div class=\"panel-group\" id=\"$id$\">
+	<div class=\"panel panel-default\">
+		<div class=\"panel-heading\">
+			<h4 class=\"panel-title\">
+				<a data-toggle=\"collapse\" data-parent=\"#$id$\" href=\"#$id$-one\">
+					$heading1$
+				</a>
+			</h4>
+		</div>
+		<div id=\"$id$-one\" class=\"panel-collapse collapse in\">
+			<div class=\"panel-body\">
+				$content1$
+			</div>
+		</div>
+	</div>
+	<div class=\"panel panel-default\">
+		<div class=\"panel-heading\">
+			<h4 class=\"panel-title\">
+				<a data-toggle=\"collapse\" data-parent=\"#$id$\" href=\"#$id$-two\">
+					$heading2$
+				</a>
+			</h4>
+		</div>
+		<div id=\"$id$-two\" class=\"panel-collapse collapse\">
+			<div class=\"panel-body\">
+				$content2$
+			</div>
+		</div>
+	</div>
+	<div class=\"panel panel-default\">
+		<div class=\"panel-heading\">
+			<h4 class=\"panel-title\">
+				<a data-toggle=\"collapse\" data-parent=\"#$id$\" href=\"#$id$-three\">
+					$heading3$
+				</a>
+			</h4>
+		</div>
+		<div id=\"$id$-three\" class=\"panel-collapse collapse\">
+			<div class=\"panel-body\">
+				$content3$
+			</div>
+		</div>
+	</div>
+</div>
+			');

@@ -1,0 +1,10 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('Tooltip');
+$snippet['Author'] = stripslashes('Eric Lebetsamer');
+$snippet['Description'] = stripslashes('The tooltip plugin generates content and markup on demand, and by default places tooltips after their trigger element.');
+$snippet['Declarations'][] = array('ID'=>stripslashes('tooltip'),'ToolTip'=>stripslashes('The text for the tooltip'),'Default'=>stripslashes('Some tooltip text!'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content'),'ToolTip'=>stripslashes('The content for the tooltip link'),'Default'=>stripslashes('Hover over me'));
+$snippet['Code'] = stripslashes('
+				<a href=\"#\" data-toggle=\"tooltip\" title=\"$tooltip$\">$content$</a>
+			');

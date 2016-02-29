@@ -17,7 +17,17 @@
   </style>
   <script src="<?php global $jquery_js;echo $jquery_js;?>"></script>
   <script src="<?php global $bootstrap_js;echo $bootstrap_js;?>"></script>
-  <?php echo $head; ?>
+  <?php
+      global $settings;
+      global $widget;
+      $position = count($settings['widget_main']);
+      if( $position>0){
+          foreach( $settings['widget_main'] as $wgt ){
+              $widget( array('name'=>$wgt,'location' =>'header' ) );
+          }
+      }
+      echo $head;
+  ?>
 </head>
 <body>
     <?php

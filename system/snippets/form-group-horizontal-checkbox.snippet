@@ -1,0 +1,17 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('Checkbox group');
+$snippet['Author'] = stripslashes('Eric Lebetsamer');
+$snippet['Description'] = stripslashes('A form group that contains a checkbox, meant for use in a horizontal form.');
+$snippet['Declarations'][] = array('ID'=>stripslashes('label'),'ToolTip'=>stripslashes('Text for the label'),'Default'=>stripslashes('My label'));
+$snippet['Code'] = stripslashes('
+				<div class=\"form-group\">
+	<div class=\"col-sm-offset-2 col-sm-10\">
+		<div class=\"checkbox\">
+			<label>
+				<input type=\"checkbox\"> $label$
+			</label>
+		</div>
+	</div>
+</div>
+			');

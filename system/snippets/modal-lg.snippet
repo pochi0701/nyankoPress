@@ -1,0 +1,29 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('Modal large');
+$snippet['Author'] = stripslashes('Eric Lebetsamer');
+$snippet['Description'] = stripslashes('Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.');
+$snippet['Declarations'][] = array('ID'=>stripslashes('id'),'ToolTip'=>stripslashes('ID of the modal'),'Default'=>stripslashes('myModal'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('title'),'ToolTip'=>stripslashes('Title of the modal'),'Default'=>stripslashes('Modal title'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('content'),'ToolTip'=>stripslashes('Content of the modal'),'Default'=>stripslashes('<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('close-text'),'ToolTip'=>stripslashes('Text for the \"close\" button'),'Default'=>stripslashes('Close'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('save-text'),'ToolTip'=>stripslashes('Text for the \"save\" button'),'Default'=>stripslashes('Save'));
+$snippet['Code'] = stripslashes('
+				<div class=\"modal fade\" id=\"$id$\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"$id$-label\" aria-hidden=\"true\">
+	<div class=\"modal-dialog modal-lg\">
+		<div class=\"modal-content\">
+			<div class=\"modal-header\">
+				<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+				<h4 class=\"modal-title\" id=\"$id$-label\">$title$</h4>
+			</div>
+			<div class=\"modal-body\">
+				$content$
+			</div>
+			<div class=\"modal-footer\">
+				<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">$close-text$</button>
+				<button type=\"button\" class=\"btn btn-primary\">$save-text$</button>
+			</div>
+		</div>
+	</div>
+</div>
+			');

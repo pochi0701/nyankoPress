@@ -1,0 +1,13 @@
+<?php
+$snippet=array();
+$snippet['Title'] = stripslashes('Checkbox');
+$snippet['Author'] = stripslashes('Eric Lebetsamer');
+$snippet['Description'] = stripslashes('A form group that contains a checkbox.');
+$snippet['Declarations'][] = array('ID'=>stripslashes('label'),'ToolTip'=>stripslashes('Text for the label'),'Default'=>stripslashes('My label'));
+$snippet['Code'] = stripslashes('
+				<div class=\"checkbox\">
+	<label>
+		<input type=\"checkbox\"> $label$
+	</label>
+</div>
+			');

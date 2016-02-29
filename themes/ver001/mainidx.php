@@ -8,6 +8,12 @@
     $wr = count($settings['widget_r']);
     $header(array('title'=>$title,'bland'=>$bland,'head'=>$data['header'],'menu'=>$menu));
     if( isset($_SESSION) && isset($_SESSION['login']) && $_SESSION['login'] == 1 )  echo "<a class = \"btn btn-primary\" href=\"index.php?mode={$data['mode']}&p={$data['page']}\">編集</a>\n";
+    $mainidx = count($settings['widget_mainidx']);
+    if( $mainidx>0){
+        foreach( $settings['widget_mainidx'] as $wgt ){
+            $widget( array('name'=>$wgt,'location' =>'top' ));
+        }
+    }
     if( $wl+$wr > 0 ){ 
         echo "<div class=\"row\">\n";
         //widget_l
@@ -16,7 +22,7 @@
             $grid -= 2;
             echo "  <div class=\"col-xs-12 col-sm-2 col-md-2\">\n";
             foreach( $settings['widget_l'] as $wgt ){
-                $widget( $wgt );
+                $widget( array('name'=>$wgt) );
             }
             echo "  </div>\n";  
         }
@@ -66,12 +72,18 @@
     if( $wr > 0 ){
         echo "  <div class=\"col-xs-12 col-sm-2 col-md-2\">\n";
         foreach( $settings['widget_r'] as $wgt ){
-            $widget( $wgt );
+            $widget( array('name'=>$wgt) );
         }
         echo "  </div>\n";
     }
     if( $wr+$wl>0 ){
         echo "</div>\n";
+    }
+    $mainidx = count($settings['widget_mainidx']);
+    if( $mainidx>0){
+        foreach( $settings['widget_mainidx'] as $wgt ){
+            $widget( array('name'=>$wgt,'location' =>'bottom' ));
+        }
     } 
     $footer();
 
