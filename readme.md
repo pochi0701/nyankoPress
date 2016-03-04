@@ -71,7 +71,6 @@ You can insert code into header(bottom of header),top(top of body),bottom(bottom
     }
 
 ```
-こんな記述です。
 
 ## database
 No database used.Articles are saved as JSON.
