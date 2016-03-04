@@ -1,7 +1,6 @@
-<?php
 $settings=array();
 $settings['theme'] = stripslashes('standard');
-$settings['title'] = stripslashes('システム開発への道');
+$settings['title'] = stripslashes('blog name');
 $settings['widget_l'] = array();
 $settings['widget_r'] = array(stripslashes('calendar'),stripslashes('youtube'),stripslashes('youtube'));
 $settings['widget_fixl'] = array();
@@ -14,16 +13,17 @@ $settings['bootstrap_js'] = stripslashes('http://netdna.bootstrapcdn.com/bootstr
 $settings['jquery'] = stripslashes('http://code.jquery.com/jquery-1.11.1.min.js');
 $settings['start'] = stripslashes('');
 $attribute=array();
-$attribute['theme']['テーマ'] = 'TR';
-$attribute['title']['ブログタイトル'] = 'TR';
-$attribute['widget_l']['ブログウィジット右'] = 'TA';
-$attribute['widget_r']['ブログウィジット左'] = 'TA';
-$attribute['widget_fixl']['固定ページウィジット右'] = 'TA';
-$attribute['widget_fixr']['固定ページウィジット左'] = 'TA';
-$attribute['widget_main']['ブログウィジット本文'] = 'TA';
-$attribute['widget_mainidx']['固定ページウィジット本文'] = 'TA';
-$attribute['footer']['フッターウィジット'] = 'TA';
+$attribute['theme']['theme'] = 'TR';
+$attribute['title']['blog name'] = 'TR';
+$attribute['widget_l']['blog widget right'] = 'TA';
+$attribute['widget_r']['blog widget left'] = 'TA';
+$attribute['widget_fixl']['fixed page right'] = 'TA';
+$attribute['widget_fixr']['fixed page left'] = 'TA';
+$attribute['widget_main']['main contents'] = 'TA';
+$attribute['widget_mainidx']['fixed pages'] = 'TA';
+$attribute['footer']['footer'] = 'TA';
 $attribute['bootstrap_css']['BOOTSTRAP CSS PATH'] = 'TR';
 $attribute['bootstrap_js']['BOOTSTRAP JS PATH'] = 'TR';
 $attribute['jquery']['jquery PATH'] = 'TR';
-$attribute['start']['開始画面'] = 'T';
+$attribute['start']['startup URL'] = 'T';
+

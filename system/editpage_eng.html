@@ -1,0 +1,52 @@
+    <?php if( isset($title) )
+        echo "<a href=\"index.php?p={$page}\" target=\"_blank\">Preview:index.php?p={$page}</a>\n";
+    ?>
+    <form class="form-horizontal" role="form" method="post" action="<?php echo ($page>=0)?"index.php?mode={$mode}&p={$page}":"";?>">
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="title">Title</label>
+        <div class="col-sm-10 form-inline">
+          <input type="text" class="form-control" id="title" name="title" maxlength="80" size="80" value="<?php echo htmlspecialchars($title);?>" placeholder="Title" required autofocus>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="native"<?php echo (($native==='on')?' checked':'');?>>php native
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="ptag">auto add p/br tag.
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+         <label class="col-sm-2 control-label" for="text" >Contents</label>
+         <div class="col-sm-10">
+            <textarea class="form-control" id="text" name="text" rows="10"><?php echo htmlspecialchars($text);?></textarea>
+         </div>
+      </div>
+      <div class="form-group">
+         <label class="col-sm-2 control-label" for="head">header(css)</label>
+         <div class="col-sm-10">
+            <textarea class="form-control" id="head" name="head" rows="5"><?php echo htmlspecialchars($head);?></textarea>
+         </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="eyecatch">eyecatch image</label>
+        <div class="col-sm-10 form-inline">
+          <input type="text" class="form-control" id="eyecatch" name="eyecatch" maxlength="80" size="80" value="<?php echo $eyecatch;?>" placeholder="eyecatch image">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" name="submit" value="submit" class="btn btn-primary">Regist</button>
+        </div>
+      </div>
+    </form>

@@ -1,0 +1,104 @@
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">削除の確認</h4>
+            </div>
+            <div class="modal-body">
+                <p>Now delete the image.</p>
+                <p>Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><strong>Media upload</strong> <small>Jpg,gif,png,pdf,mp4..</small></div>
+    <div class="panel-body">
+        <div id="result"><?php echo $errmsg; ?></div>
+        <br />
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-inline">
+                <div class="form-group">
+                    <input name="upfile[]" type="file" multiple="multiple" />
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary" value="Do upload">Upload files</button>
+            </div>
+       </form>
+       <div class="upload-drop-zone" id="drop-zone" ondragover="onUpload_DragOver(event)" ondrop="onUpload_Drop(event)">
+        Just drag and drop files here
+       </div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+  // XMLHttpRequestオブジェクトの生成
+  function createXmlHttpRequest(){
+    if(window.XMLHttpRequest){
+      return new XMLHttpRequest();
+    }else if(window.ActiveXObject){
+      try {
+          return new ActiveXObject("MSXML2.XMLHTTP.6.0");
+      } catch (e) {
+        try {
+           return new ActiveXObject("MSXML2.XMLHTTP.3.0");
+        } catch (e2) {
+          try {
+              return new ActiveXObject("MSXML2.XMLHTTP");
+          } catch (e3) {
+             return null
+          }
+        }
+      }
+    }else {
+        return null
+    }
+  }
+  // サーバーへHttpリクエストの送信
+  function sendHttpRequest(files){
+      // XMLHttpRequestオブジェクトの生成
+      var xmlhttp = createXmlHttpRequest();
+      // イベントの設定
+      xmlhttp.onreadystatechange = function() {
+        // レスポンスの処理が完了後、コールバック関数へ渡す
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            // コールバック
+            XmlHttpCallback(xmlhttp);
+        }
+      }
+      // フォームデータの生成(HTML5)
+      var fd = new FormData();
+      for (var i=0; i< files.length; i++) {
+          fd.append("upfile[]",files[i]);
+      }
+      xmlhttp.open('POST', 'index.php?mode=4&drop=1', true);
+      // サーバにHTTPリクエストを送信
+      xmlhttp.send(fd);
+  }
+  // コールバック関数(クライアント側への表示)
+  function XmlHttpCallback(xmlhttp){
+      var result = document.getElementById("result");
+      result.innerHTML = xmlhttp.responseText;
+  }
+  // *** アップロード用ドラッグ&ドロップ
+  function onUpload_DragOver(event){
+      // イベントのキャンセル
+      event.preventDefault();
+  }
+  function onUpload_Drop(event){
+      if (event.dataTransfer.files.length !=0){
+          // まとめて送信する
+          sendHttpRequest(event.dataTransfer.files);
+      }
+      // イベントのキャンセル
+      event.preventDefault();
+  }
+  $('#confirm-delete').on('show.bs.modal', function(e) {
+      $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+  });
+// -->
+</script>

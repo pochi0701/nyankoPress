@@ -78,7 +78,7 @@
     }
     echo"  <div class=\"form-group\">\n";
     echo"    <div class=\"col-sm-offset-3 col-sm-9\">\n";
-    echo"      <button type=\"submit\" name=\"submit\" value=\"submit\" class=\"btn btn-primary\">設定</button>\n";
+    echo"      <button type=\"submit\" name=\"submit\" value=\"submit\" class=\"btn btn-primary\">Regist</button>\n";
     echo"    </div>\n";
     echo"   </div>\n";
     echo "</form>\n";
