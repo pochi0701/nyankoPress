@@ -35,7 +35,6 @@
                        unset($okey);
                        unset($ovalue);
                      }else{
-                       echo "[$ovalue]-[$target]\n";
                        echo "<li ".(($target===$ovalue)?"class=\"active\"":"")."><a href=\"{$ovalue}\">{$okey}</a></li>\n";
                        $okey = $key;
                        $ovalue = $value;
