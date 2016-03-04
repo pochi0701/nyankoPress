@@ -4,7 +4,7 @@ NyankoPress
 にゃんこプレスは2000行程度のシンプルなCMSでPHPで書かれています。主な技術として１行テンプレートエンジンを使っています。１行テンプレートはテンプレートエンジンを１行で書く方法で、下記のように関数を使って構築されています。
 
 ```php
-$header  = function($param){global $theme;extract($param);include "themes/{$theme}/header.php";};
+$header  = function_name($param){global $theme;extract($param);include "themes/{$theme}/header.php";};
 ```
 
 この例ではテンプレートに引き渡す変数を指定してテンプレート側のheader.phpをincludeしてます。global変数$themeによってテーマは自由に変更可能です。
@@ -44,7 +44,7 @@ bootstrapの機能を切り出したsnippetsを表示しコピーできる機能
 そのうちにsnippetsを投稿できるようにするかもしれません。取り敢えずは必要なコードをsystem/snippets以下のサンプル同様に格納してみてください。
 
 ## misc
-ページ編集時にnativeフラグを用意しました。nativeにチェックを入れるとphpのコードが有効になり、<?php .. ?>を記述できます。また、P,BRタグを挿入できるフィルタも入れました。簡単な文書は<p>で囲まれます。
+ページ編集時にnativeフラグを用意しました。nativeにチェックを入れるとphpのコードが有効になり、<?php .. ?>を記述できます。また、P,BRタグを挿入できるフィルタも入れました。簡単な文書は&lt;p&gt;で囲まれます。
 
 サンプルサイト http://neon.cx
 
