@@ -1,7 +1,7 @@
     <?php $target=basename($_SERVER['REQUEST_URI']);?>
     <div class="container">
       <!-- 1.ナビゲーションバーの設定 -->
-      <nav class="navbar navbar-inverse navbar-fixed-top">
+      <nav class="navbar navbar-default navbar-static-top">
         <!-- 2.ヘッダ情報 -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-menu-1">
@@ -35,7 +35,6 @@
                        unset($okey);
                        unset($ovalue);
                      }else{
-                       echo "[$ovalue]-[$target]\n";
                        echo "<li ".(($target===$ovalue)?"class=\"active\"":"")."><a href=\"{$ovalue}\">{$okey}</a></li>\n";
                        $okey = $key;
                        $ovalue = $value;
