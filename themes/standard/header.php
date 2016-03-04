@@ -20,9 +20,8 @@
   <?php
       global $settings;
       global $widget;
-      $position = count($settings['widget_main']);
-      if( $position>0){
-          foreach( $settings['widget_main'] as $wgt ){
+      if( count($settings[$wgt_name])>0){
+          foreach( $settings[$wgt_name] as $wgt ){
               $widget( array('name'=>$wgt,'location' =>'header' ) );
           }
       }
@@ -32,6 +31,6 @@
 <body>
     <?php
     global $navbar;
-    $navbar(array('target'=>$title,'bland'=>$bland,'menu'=>$menu));
+    $navbar(array('bland'=>$bland,'menu'=>$menu));
     ?>
     <div class="container">

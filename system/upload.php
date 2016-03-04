@@ -10,20 +10,22 @@ function getimglist()
     if ($handle = opendir($path)) {
         while (false !== ($file = readdir($handle))) {
             if( ! is_dir("$path/$file") ){
-                $imglist[] = "$path/$file";
+                $imglist[] = array('url'=>"$path/$file",'file'=>$file,'mtime'=>filemtime("$path/$file"));
             }
         }
         closedir($handle);
     }
+    usort($imglist, function ($a, $b) { return $b['mtime'] - $a['mtime']; });
     $cnt=0;
     $ec=0;
     $msg = "";
-    foreach($imglist as $url){
+    foreach($imglist as $ary){
+        extract($ary);
         if( $cnt % 4 == 0 ){
             $msg .=  "<div class=\"row\">\n";
             $ec = 1;
         }
-        $msg .= "<div class=\"col-xs-6 col-sm-4 col-md-3\"><input type=\"text\" value=\"{$url}\"><img src=\"{$url}\" class=\"img-responsive\"></div>\n";
+        $msg .= "<div class=\"col-xs-6 col-sm-4 col-md-3\"><input type=\"text\" class=\"form-control\" value=\"{$url}\"><a href=\"#\" data-href=\"index.php?mode=4&del={$file}\" data-toggle=\"modal\" data-target=\"#confirm-delete\"><img src=\"{$url}\" class=\"img-responsive\"></a></div>\n";
         if( $cnt % 4 == 3 ){
             $msg .= "</div>\n";
             $ec = 0;
@@ -91,10 +93,35 @@ if (isset($_FILES['upfile'])){
        exit();
     }      
 }else{
+    $delfile = array_get($_GET,'del');
+    if( strlen($delfile)>0 ) unlink(FOLDER_UPLOAD.'/'.$delfile); 
     $errmsg = getimglist();
 }
 global $syshdr;
 global $sysftr;
-$syshdr(array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
+$head = <<<'EOT'
+    <style type="text/css">
+        /* layout.css Style */
+.upload-drop-zone {
+  height: 200px;
+  border-width: 2px;
+  margin-bottom: 20px;
+}
+
+/* skin.css Style*/
+
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 200px;
+  text-align: center
+}
+.upload-drop-zone.drop {
+  color: #222;
+  border-color: #222;
+}
+    </style>
+EOT;
+$syshdr(array('title'=>$title,'bland'=>$bland,'menu'=>$menu,'head'=>$head));
 include("upload.html");
 $sysftr();

@@ -12,25 +12,26 @@ if( strlen($submit) ){
     $array=preg_split("/[\r\n]+/",$text);
     $cnt = -1;
     foreach( $array as $value){
-        $value = mb_convert_kana($value,'s','UTF-8');
-        $flag = ($value[0]==' ')?1:0; 
-        $line = explode(",",trim($value));
-        if( count($line) == 2 ){        
-            if( $flag == 0 ){
-                $smenu   += array($line[0] => $line[1]);
-            }else{
-                if( is_array($smenu[$cnt]) ){
-                    $smenu[$cnt] += array($line[0] => $line[1]);
+        if( strlen($value) > 0 ){
+            $value = mb_convert_kana($value,'s','UTF-8');
+            $flag = ($value[0]==' ')?1:0; 
+            $line = explode(",",trim($value));
+            if( count($line) == 2 ){        
+                if( $flag == 0 ){
+                    $smenu   += array($line[0] => $line[1]);
                 }else{
-                    $smenu[]  = array($line[0] => $line[1]);
-                    $cnt += 1;
+                    if( is_array($smenu[$cnt]) ){
+                        $smenu[$cnt] += array($line[0] => $line[1]);
+                    }else{
+                        $smenu[]  = array($line[0] => $line[1]);
+                        $cnt += 1;
+                    }
                 }
             }
+        }else{
+            break;
         }
     }
-    //$tmenu['bland'] = $sbland;
-    //$tmenu['menu']  = $smenu;
-    //dbSetMenu($tmenu);
     dbSetMenu(array('bland'=>$sbland,'menu'=>$smenu));
     echo "設定完了";
 //編集

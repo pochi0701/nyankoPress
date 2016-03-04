@@ -8,8 +8,7 @@ $snippet['Declarations'][] = array('ID'=>stripslashes('title'),'ToolTip'=>strips
 $snippet['Declarations'][] = array('ID'=>stripslashes('content'),'ToolTip'=>stripslashes('Content of the modal'),'Default'=>stripslashes('<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'));
 $snippet['Declarations'][] = array('ID'=>stripslashes('close-text'),'ToolTip'=>stripslashes('Text for the \"close\" button'),'Default'=>stripslashes('Close'));
 $snippet['Declarations'][] = array('ID'=>stripslashes('save-text'),'ToolTip'=>stripslashes('Text for the \"save\" button'),'Default'=>stripslashes('Save'));
-$snippet['Code'] = stripslashes('
-				<div class=\"modal fade\" id=\"$id$\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"$id$-label\" aria-hidden=\"true\">
+$snippet['Code'] = stripslashes('<div class=\"modal fade\" id=\"$id$\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"$id$-label\" aria-hidden=\"true\">
 	<div class=\"modal-dialog modal-sm\">
 		<div class=\"modal-content\">
 			<div class=\"modal-header\">
@@ -25,5 +24,4 @@ $snippet['Code'] = stripslashes('
 			</div>
 		</div>
 	</div>
-</div>
-			');
+</div>');

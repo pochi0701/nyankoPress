@@ -6,8 +6,7 @@ $snippet['Description'] = stripslashes('Extend Bootstrap\'s grid system with the
 $snippet['Declarations'][] = array('ID'=>stripslashes('image'),'ToolTip'=>stripslashes('The image for the thumbnail object'),'Default'=>stripslashes('http://placehold.it/64x64'));
 $snippet['Declarations'][] = array('ID'=>stripslashes('heading'),'ToolTip'=>stripslashes('The caption heading for the thumbnail object'),'Default'=>stripslashes('Thumbnail caption heading'));
 $snippet['Declarations'][] = array('ID'=>stripslashes('content'),'ToolTip'=>stripslashes('The caption content for the thumbnail object'),'Default'=>stripslashes('<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'));
-$snippet['Code'] = stripslashes('
-				<div class=\"row\">
+$snippet['Code'] = stripslashes('<div class=\"row\">
 	<div class=\"col-sm-6 col-md-4\">
 		<div class=\"thumbnail\">
 			<img src=\"$image$\">
@@ -17,5 +16,4 @@ $snippet['Code'] = stripslashes('
 			</div>
 		</div>
 	</div>
-</div>
-			');
+</div>');

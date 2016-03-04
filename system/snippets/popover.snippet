@@ -3,8 +3,11 @@ $snippet=array();
 $snippet['Title'] = stripslashes('Popover');
 $snippet['Author'] = stripslashes('Eric Lebetsamer');
 $snippet['Description'] = stripslashes('Add small overlays of content, like those on the iPad, to any element for housing secondary information.');
-$snippet['Declarations'][] = array('ID'=>stripslashes('popover'),'ToolTip'=>stripslashes('The text for the popover'),'Default'=>stripslashes('Lorem ipsum dolor sit amet, consectetur adipiscing elit.'));
+$snippet['Declarations'][] = array('ID'=>stripslashes('header'),'ToolTip'=>stripslashes('The title for the popover'),'Default'=>stripslashes('Popover Header'));
 $snippet['Declarations'][] = array('ID'=>stripslashes('content'),'ToolTip'=>stripslashes('The content for the popover link'),'Default'=>stripslashes('Hover over me'));
-$snippet['Code'] = stripslashes('
-				<a href=\"#\" data-container=\"body\" data-toggle=\"popover\" data-content=\"popover\">$content$</a>
-			');
+$snippet['Code'] = stripslashes('<a href=\"#\" data-container=\"body\" data-toggle=\"popover\" title=\"$header$\" data-content=\"popover\">$content$</a>
+<script>
+$(document).ready(function(){
+    $(\'[data-toggle=\"popover\"]\').popover();   
+});
+</script>');

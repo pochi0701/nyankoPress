@@ -1,3 +1,4 @@
+    <?php $target=basename($_SERVER['REQUEST_URI']);?>
     <div class="container">
       <!-- 1.ナビゲーションバーの設定 -->
       <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -20,7 +21,7 @@
                  foreach($menu as $key => $value){
                    if( isset($okey) ){
                      if( is_array( $value ) ){
-                       $flag = array_key_exists($target,$value);
+                       $flag = in_array($target,$value);
                        echo "<li class=\"dropdown".(($flag)?" active":"")."\">\n";
                        echo "  <a href=\"{$ovalue}\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n";
                        echo "  <span class=\"link-menu\">{$okey}<b class=\"caret\"></b></span>\n";
@@ -34,11 +35,8 @@
                        unset($okey);
                        unset($ovalue);
                      }else{
-                       if( $okey === $target ){
-                         echo "<li class=\"active\"><a href=\"{$ovalue}\">{$okey}</a></li>\n";
-                       }else{
-                         echo "<li><a href=\"{$ovalue}\">{$okey}</a></li>\n";
-                       }
+                       echo "[$ovalue]-[$target]\n";
+                       echo "<li ".(($target===$ovalue)?"class=\"active\"":"")."><a href=\"{$ovalue}\">{$okey}</a></li>\n";
                        $okey = $key;
                        $ovalue = $value;
                      }
@@ -49,14 +47,9 @@
                  }
                  //残り要素
                  if( ! is_null($okey) ){
-                   if( $okey === $target ){
-                     echo "<li class=\"active\"><a href=\"{$ovalue}\">{$okey}</a></li>\n";
-                   }else{
-                     echo "<li><a href=\"{$ovalue}\">{$okey}</a></li>\n";
-                   }
+                   echo "<li ".(($target===$ovalue)?"class=\"active\"":"")."><a href=\"{$ovalue}\">{$okey}</a></li>\n";
                  }
              ?>
           </ul>
         </div>
       </nav>
-    </div>

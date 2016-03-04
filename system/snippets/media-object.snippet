@@ -6,8 +6,7 @@ $snippet['Description'] = stripslashes('Abstract object styles for building vari
 $snippet['Declarations'][] = array('ID'=>stripslashes('image'),'ToolTip'=>stripslashes('The image for the media object'),'Default'=>stripslashes('http://placehold.it/64x64'));
 $snippet['Declarations'][] = array('ID'=>stripslashes('heading'),'ToolTip'=>stripslashes('The heading for the media object'),'Default'=>stripslashes('Media heading'));
 $snippet['Declarations'][] = array('ID'=>stripslashes('content'),'ToolTip'=>stripslashes('The content for the media object'),'Default'=>stripslashes('Lorem ipsum dolor sit amet, consectetur adipiscing elit.'));
-$snippet['Code'] = stripslashes('
-				<div class=\"media\">
+$snippet['Code'] = stripslashes('<div class=\"media\">
 	<div class=\"media-left\">
 		<a href=\"#\">
 			<img class=\"media-object\" src=\"$image$\">
@@ -17,5 +16,4 @@ $snippet['Code'] = stripslashes('
 		<h4 class=\"media-heading\">$heading$</h4>
 		$content$
 	</div>
-</div>
-			');
+</div>');

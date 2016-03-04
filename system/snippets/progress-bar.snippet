@@ -4,10 +4,8 @@ $snippet['Title'] = stripslashes('Progress bar');
 $snippet['Author'] = stripslashes('Eric Lebetsamer');
 $snippet['Description'] = stripslashes('Provide up-to-date feedback on the progress of a workflow or action with simple yet flexible progress bars.');
 $snippet['Declarations'][] = array('ID'=>stripslashes('progress'),'ToolTip'=>stripslashes('The percentage of progress'),'Default'=>stripslashes('50'));
-$snippet['Code'] = stripslashes('
-				<div class=\"progress\">
+$snippet['Code'] = stripslashes('<div class=\"progress\">
 	<div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"$progress$\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: $progress$%;\">
 		<span class=\"sr-only\">$progress$% Complete</span>
 	</div>
-</div>
-			');
+</div>');

@@ -52,6 +52,9 @@ if( $mode == 0 || $mode == 1){
     if( array_getn($_GET,'del') > 0 && $page > 0 ){
         dbDelContents($page);
     }
+    $_contents2 = $_contents;
+    usort($_contents2, function ($a, $b) { return strtotime($b['regdate']) - strtotime($a['regdate']); });
+
     include( "displist.html");
 }
 $sysftr();

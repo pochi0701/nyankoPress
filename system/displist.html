@@ -18,16 +18,19 @@
   </div>
   <table class="table table-striped table-bordered">
     <thead>
-      <tr><th>Page</th><th>Title</th><th>削除</th></tr>
+      <tr><th>Page</th><th>Title</th><th>Create Date</th><th>Modify Date</th><th>Delete</th></tr>
     </thead>
     <tbody>
 <?php
     $rmode = $mode % 2;
-    foreach( $_contents as $value){
+    foreach( $_contents2 as $value){
         if( $value['mode'] == $rmode ){
+            
             echo "<tr><td><a href=\"index.php?mode={$rmode}&p={$value['page']}\">{$value['page']}</a></td>";
             echo "<td><a href=\"index.php?mode={$rmode}&p={$value['page']}\">{$value['title']}</a></td>";
-            echo "<td><a href=\"#\" data-href=\"index.php?mode={$mode}&p={$value['page']}&del=1\" data-toggle=\"modal\" data-target=\"#confirm-delete\">削除</a></td></tr>\n";
+            echo "<td>{$value['regdate']}</td>";
+            echo "<td>{$value['moddate']}</td>";
+            echo "<td><a href=\"#\" data-href=\"index.php?mode={$mode}&p={$value['page']}&del=1\" data-toggle=\"modal\" data-target=\"#confirm-delete\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a></td></tr>\n";
         }
     }
 ?>
@@ -36,6 +39,5 @@
   <script>
     $('#confirm-delete').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-        $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
     });
   </script>

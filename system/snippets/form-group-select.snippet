@@ -5,9 +5,7 @@ $snippet['Author'] = stripslashes('Eric Lebetsamer');
 $snippet['Description'] = stripslashes('A form group with a select dropdown and a label.');
 $snippet['Declarations'][] = array('ID'=>stripslashes('id'),'ToolTip'=>stripslashes('ID of the select'),'Default'=>stripslashes('form-group-select'));
 $snippet['Declarations'][] = array('ID'=>stripslashes('label'),'ToolTip'=>stripslashes('Text for the label'),'Default'=>stripslashes('My label'));
-$snippet['Code'] = stripslashes('
-				<div class=\"form-group\">
+$snippet['Code'] = stripslashes('<div class=\"form-group\">
 	<label class=\"control-label\" for=\"$id$\">$label$</label>
 	<select class=\"form-control\" id=\"$id$\">$end$</select>
-</div>
-			');
+</div>');

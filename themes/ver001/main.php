@@ -4,7 +4,7 @@ global $footer;
 global $widget;
 global $native;
 global $settings;
-$header(array('title'=>$data['title'],'bland'=>$bland,'head'=>$data['header'],'menu'=>$menu));
+$header(array('title'=>$data['title'],'bland'=>$bland,'head'=>$data['header'],'menu'=>$menu,'wgt_name'=>'widget_main'));
 if( isset($_SESSION) && isset($_SESSION['login']) && $_SESSION['login'] == 1 )  echo "<a class = \"btn btn-primary\" href=\"index.php?mode={$data['mode']}&p={$data['page']}\">編集</a>\n";
 $main = count($settings['widget_main']);
 if( $main>0){
@@ -68,4 +68,4 @@ if( $main>0){
         $widget( array('name'=>$wgt,'location' =>'bottom' ) );
     }
 }
-$footer();
+$footer(array('wgt_name'=>'widget_main'));

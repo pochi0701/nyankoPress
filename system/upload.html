@@ -1,56 +1,37 @@
-<DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <title><?php echo $title; ?></title>
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Cache-Control" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="<?php global $bootstrap_css;echo $bootstrap_css;?>" rel="stylesheet">
-    <style type="text/css">
-        /* layout.css Style */
-.upload-drop-zone {
-  height: 200px;
-  border-width: 2px;
-  margin-bottom: 20px;
-}
-
-/* skin.css Style*/
-.upload-drop-zone {
-  color: #ccc;
-  border-style: dashed;
-  border-color: #ccc;
-  line-height: 200px;
-  text-align: center
-}
-.upload-drop-zone.drop {
-  color: #222;
-  border-color: #222;
-}
-    </style>
-  <script src="<?php global $jquery_js;echo $jquery_js;?>"></script>
-  <script src="<?php global $bootstrap_js;echo $bootstrap_js;?>"></script>
-</head>
-<body>
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading"><strong>メディアアップロード</strong> <small>Jpg,gif,png,pdf,mp4..</small></div>
-        <div class="panel-body">
-            <div id="result"><?php echo $errmsg; ?></div>
-            <br />
-            <form action="" method="post" enctype="multipart/form-data">
-                <div class="form-inline">
-                    <div class="form-group">
-                        <input name="upfile[]" type="file" multiple="multiple" />
-                    </div>
-                    <button type="submit" class="btn btn-sm btn-primary" value="アップロードを実行する">Upload files</button>
-                </div>
-           </form>
-           <div class="upload-drop-zone" id="drop-zone" ondragover="onUpload_DragOver(event)" ondrop="onUpload_Drop(event)">
-            Just drag and drop files here
-           </div>
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">削除の確認</h4>
+            </div>
+            <div class="modal-body">
+                <p>画像を削除しようとしています。</p>
+                <p>削除してよろしいですか？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok">削除</a>
+            </div>
         </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><strong>メディアアップロード</strong> <small>Jpg,gif,png,pdf,mp4..</small></div>
+    <div class="panel-body">
+        <div id="result"><?php echo $errmsg; ?></div>
+        <br />
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-inline">
+                <div class="form-group">
+                    <input name="upfile[]" type="file" multiple="multiple" />
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary" value="アップロードを実行する">Upload files</button>
+            </div>
+       </form>
+       <div class="upload-drop-zone" id="drop-zone" ondragover="onUpload_DragOver(event)" ondrop="onUpload_Drop(event)">
+        Just drag and drop files here
+       </div>
     </div>
 </div>
 <script type="text/javascript">
@@ -94,7 +75,7 @@
       for (var i=0; i< files.length; i++) {
           fd.append("upfile[]",files[i]);
       }
-      xmlhttp.open('POST', 'index.php?mode=5&drop=1', true);
+      xmlhttp.open('POST', 'index.php?mode=4&drop=1', true);
       // サーバにHTTPリクエストを送信
       xmlhttp.send(fd);
   }
@@ -116,7 +97,8 @@
       // イベントのキャンセル
       event.preventDefault();
   }
+  $('#confirm-delete').on('show.bs.modal', function(e) {
+      $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+  });
 // -->
 </script>
-</body>
-</html>

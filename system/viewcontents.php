@@ -8,7 +8,7 @@ foreach( $_contents as $value){
     echo "<td>{$value['page']}</td>";
     echo "<td>{$value['mode']}</td>";
     echo "<td>{$value['title']}</td>";
-    echo "<td>{$value['auther']}</td>";
+    echo "<td>{$value['author']}</td>";
     echo "<td>{$value['eyecatch']}</td>";
     echo "<td>{$value['regdate']}</td>";
     echo "<td>{$value['moddate']}</td>";

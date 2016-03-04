@@ -6,7 +6,7 @@
     global $settings;
     $wl = count($settings['widget_l']);
     $wr = count($settings['widget_r']);
-    $header(array('title'=>$title,'bland'=>$bland,'head'=>$data['header'],'menu'=>$menu));
+    $header(array('title'=>$title,'bland'=>$bland,'head'=>$data['header'],'menu'=>$menu,'wgt_name'=>'widget_mainidx'));
     if( isset($_SESSION) && isset($_SESSION['login']) && $_SESSION['login'] == 1 )  echo "<a class = \"btn btn-primary\" href=\"index.php?mode={$data['mode']}&p={$data['page']}\">編集</a>\n";
     $mainidx = count($settings['widget_mainidx']);
     if( $mainidx>0){
@@ -79,11 +79,10 @@
     if( $wr+$wl>0 ){
         echo "</div>\n";
     }
-    $mainidx = count($settings['widget_mainidx']);
     if( $mainidx>0){
         foreach( $settings['widget_mainidx'] as $wgt ){
             $widget( array('name'=>$wgt,'location' =>'bottom' ));
         }
     } 
-    $footer();
+    $footer(array('wgt_name'=>'widget_mainidx'));
 

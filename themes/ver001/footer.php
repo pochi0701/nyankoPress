@@ -23,9 +23,8 @@
     <?php
         global $settings;
         global $widget;
-        $position = count($settings['widget_main']);
-        if( $position>0){
-            foreach( $settings['widget_main'] as $wgt ){
+        if( count($settings[$wgt_name])>0){
+            foreach( $settings[$wgt_name] as $wgt ){
                 $widget( array('name'=>$wgt,'location' =>'footer' ) );
             }
         }

@@ -5,9 +5,7 @@ $snippet['Author'] = stripslashes('Eric Lebetsamer');
 $snippet['Description'] = stripslashes('Extend form controls by adding text or buttons before, after, or on both sides of any text-based input. Use .input-group with an .input-group-addon to prepend or append elements to a single .form-control.');
 $snippet['Declarations'][] = array('ID'=>stripslashes('addon'),'ToolTip'=>stripslashes('The text for the addon'),'Default'=>stripslashes('@'));
 $snippet['Declarations'][] = array('ID'=>stripslashes('placeholder'),'ToolTip'=>stripslashes('The placeholder text for the input'),'Default'=>stripslashes('Placecholder'));
-$snippet['Code'] = stripslashes('
-				<div class=\"input-group\">
+$snippet['Code'] = stripslashes('<div class=\"input-group\">
 	<span class=\"input-group-addon\">$addon$</span>
 	<input type=\"text\" class=\"form-control\" placeholder=\"$placeholder$\">
-</div>
-			');
+</div>');

@@ -6,9 +6,7 @@ $snippet['Description'] = stripslashes('A form group with an input and a label, 
 $snippet['Declarations'][] = array('ID'=>stripslashes('id'),'ToolTip'=>stripslashes('ID of the input'),'Default'=>stripslashes('form-group-input'));
 $snippet['Declarations'][] = array('ID'=>stripslashes('label'),'ToolTip'=>stripslashes('Text for the label'),'Default'=>stripslashes('My label'));
 $snippet['Declarations'][] = array('ID'=>stripslashes('type'),'ToolTip'=>stripslashes('Type of the input'),'Default'=>stripslashes('text'));
-$snippet['Code'] = stripslashes('
-				<div class=\"form-group\">
+$snippet['Code'] = stripslashes('<div class=\"form-group\">
 	<label class=\"sr-only\" for=\"$id$\">$label$</label>
 	<input type=\"$type$\" class=\"form-control\" id=\"$id$\" placeholder=\"$label$\">
-</div>
-			');
+</div>');

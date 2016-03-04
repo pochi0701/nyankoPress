@@ -170,7 +170,7 @@ foreach( $contents2 as $value ){
     $entry->id("{$_SERVER['SCRIPT_NAME']}/p{$page}");
     $entry->summary(mb_strimwidth(strip_tags($contents),0, 80, '…', 'utf-8'));
     $entry->updated($moddate);
-    $entry->author(array( 'name' => $auther));
+    $entry->author(array( 'name' => $author));
     $atom->addEntry($entry);
     $cnt++;
     if( $cnt >= 10 ){

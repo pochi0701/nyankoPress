@@ -8,8 +8,10 @@ dbLoad();
 //編集
 if( $mode >= 0 && isset($_SESSION['login'])){
     list($bland,$menu) = dbGetMenu($mode);
-    foreach($menu as $key => $value){
-        if( strpos($_SERVER['QUERY_STRING'],parse_url($value,PHP_URL_QUERY))!==false ){
+    $menu2 = $menu;
+    uasort($menu2, function ($a, $b) { return strlen($b)-strlen($a); }); 
+    foreach($menu2 as $key => $value){
+        if( strpos(parse_url($value,PHP_URL_QUERY),$_SERVER['QUERY_STRING'])!==false ){
             $title = $key;
             break;
         }
@@ -21,6 +23,8 @@ if( $mode >= 0 && isset($_SESSION['login'])){
           unset($_SESSION);
           session_destroy();
           header("Location:index.php");
+    }else if ( $mode == 7 ){
+          $snippet(array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
     }
 //表示
 }else{

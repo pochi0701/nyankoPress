@@ -11,7 +11,7 @@ function array_getn($arr, $key) {
 $_contents=array();
 $_menu    =array();
 $_setting =array();
-$_widgetcnt = 0;
+$_widgets =array();
 function dbLoad()
 {
     global $_contents;
@@ -48,20 +48,17 @@ function dbAddContents($param)//$mode, $title, $contents, $head, $eyecatch, $pag
     }
     //$page0は固定ページindex用
     //番号無指定なら最後に
+    $param['moddate'] = date("Y-m-d H:i:s");
+    $param['author']  = isset($_SESSION['author'])?($_SESSION['author']):'SYSTEM';
     if( $target < 0 ){
         $param['page'] = $max+1;
         $param['regdate'] = date("Y-m-d H:i:s");
-        $param['moddate'] = date("Y-m-d H:i:s");
-        $param['auther']  = isset($_SESSION['auther'])?($_SESSION['auther']):'SYSTEM';
         $_contents[] = $param;
-        $page = $max+1;
     }else{
         $param['regdate'] = $_contents[$target]['regdate'];
-        $param['moddate'] = date("Y-m-d H:i:s");
-        $param['auther']  = isset($_SESSION['auther'])?($_SESSION['auther']):'SYSTEM';
         $_contents[$target] = $param;
-        $page = $param['page'];
     }
+    $page = $param['page'];
     file_put_contents("db/contents.txt",json_encode($_contents));
     return $page;
 }
@@ -69,22 +66,13 @@ function dbAddContents($param)//$mode, $title, $contents, $head, $eyecatch, $pag
 function dbGetContents($page)
 {
     global $_contents;
-    $max = -1;
-    $target = -1;
     foreach( $_contents as $key => $value){
-        if( $value['page'] > $max ){
-             $max = $value['page'];
-        }
         if( $value['page'] == $page ){
-             $target = $key;
+             return $_contents[$key];
         }
     }
-    if( $target >= 0 ){
-        return $_contents[$target];
-    }else{
-        //空白ページができる方がちょっとおかしい
-        return null;
-    }
+    //空白ページができる方がちょっとおかしい
+    return null;
 }
 function dbDelContents($page)
 {
@@ -153,10 +141,9 @@ $bootstrap_js  = $settings['bootstrap_js'];
 $jquery_js     = $settings['jquery'];
 
 $header  = function($params){global $theme;extract($params);include "themes/{$theme}/header.php";};
-$footer  = function()       {global $theme;                 include "themes/{$theme}/footer.php";};
+$footer  = function($params){global $theme;extract($params);include "themes/{$theme}/footer.php";};
 $disp    = function($params){global $theme;extract($params);include "themes/{$theme}/main.php";};
 $mainidx = function($params){global $theme;extract($params);include "themes/{$theme}/mainidx.php";};
-$carousel= function($slides){global $theme;                 include "themes/{$theme}/carousel.php";};
 $navbar  = function($params){global $theme;extract($params);include "themes/{$theme}/navbar.php";};
 
 $syshdr  = function($params){extract($params);include "system/header.php";};
@@ -167,8 +154,8 @@ $edit    = function($params){extract($params);include "system/edit.php";};
 $upload  = function($params){extract($params);include "system/upload.php";};
 $editmenu= function($params){extract($params);include "system/editmenu.php";};
 $setting = function($params){extract($params);include "system/setting.php";};
-$widget  = function($params){extract($params);include "widget/{$name}/index.php";};
 $snippet = function($params){extract($params);include "system/snippet.php";};
+$widget  = function($params){extract($params);include "widget/{$name}/index.php";};
 $atom    = function()       {include "system/atom.php";};
 
 //echo with evaluate
