@@ -48,5 +48,5 @@ bootstrapの機能を切り出したsnippetsを表示しコピーできる機能
 
 サンプルサイト http://neon.cx
 
-NyankoPress is Tiny(about 1000lines) Simple CMS based BootStrap and one liner template engine.
+NyankoPress is Tiny(about 2000lines) Simple CMS based BootStrap and one liner template engine.
 
