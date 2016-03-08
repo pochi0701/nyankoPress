@@ -1,7 +1,7 @@
     <?php $target=basename($_SERVER['REQUEST_URI']);?>
-    <div class="container">
       <!-- 1.ナビゲーションバーの設定 -->
       <nav class="navbar navbar-default navbar-static-top">
+       <div class="container">
         <!-- 2.ヘッダ情報 -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-menu-1">
@@ -50,5 +50,5 @@
                  }
              ?>
           </ul>
-        </div>
-      </nav>
+        </nav>
+      </div>

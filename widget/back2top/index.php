@@ -12,6 +12,7 @@
         echo "    position: fixed; /* keeps it on the bottom once in view */\n";
         echo "    bottom: 18px;\n";
         echo "    {$bt_position}: 10px;\n";
+        echo "     z-index: 300;\n";
         echo "}\n";
         echo "a.well{\n";
         echo "    color: {$bt_fgcolor};\n";

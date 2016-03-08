@@ -10,8 +10,11 @@ if( $mode >= 0 && isset($_SESSION['login'])){
     list($bland,$menu) = dbGetMenu($mode);
     $menu2 = $menu;
     uasort($menu2, function ($a, $b) { return strlen($b)-strlen($a); }); 
+    $target=basename($_SERVER['REQUEST_URI']);
     foreach($menu2 as $key => $value){
-        if( strpos(parse_url($value,PHP_URL_QUERY),$_SERVER['QUERY_STRING'])!==false ){
+        $value = explode('"',$value);
+        //if( strpos(parse_url($value,PHP_URL_QUERY),$_SERVER['QUERY_STRING'])!==false ){
+        if( strpos($target,$value[0])!==false ){
             $title = $key;
             break;
         }

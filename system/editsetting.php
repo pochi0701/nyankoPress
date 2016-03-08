@@ -10,6 +10,13 @@
     echo"      <input type=\"text\" class=\"form-control\" id=\"{$id}\" name=\"{$name}\" maxlength=\"80\" size=\"80\" value=\"".htmlspecialchars($value)."\" placeholder=\"{$dispname}\"".(($req=='R')?' required':'').">\n";
     echo"    </div>\n";
     echo"  </div>\n";
+    }else if ( $opt=='B'){
+    echo "  <div class=\"form-group\">\n";
+    echo "     <label class=\"col-sm-3 control-label\" for=\"{$id}\" >{$dispname}</label>\n";
+    echo "     <div class=\"col-sm-9\">\n";
+    echo "        <textarea class=\"form-control\" id=\"{$id}\" name=\"{$name}\" rows=\"10\">".htmlspecialchars($value)."</textarea>\n";
+    echo "     </div>\n";
+    echo "  </div>\n";
     }else if ( $opt=='C'){
     echo"  <div class=\"form-group\">\n";
     echo"    <div class=\"col-sm-offset-3 col-sm-9\">\n";
@@ -54,7 +61,7 @@
     echo "<form class=\"form-horizontal\" role=\"form\" method=\"post\">\n";
     foreach($attribute as $key => $value ){
         foreach($value as $dispname => $option){
-            $opt = preg_replace('/[^TC]/','', $option);
+            $opt = preg_replace('/[^TCB]/','', $option);
             $req = preg_replace('/[^R]/','', $option);
             //配列
             if( strpos($option,'A') !== false ){

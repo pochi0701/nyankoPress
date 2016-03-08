@@ -9,7 +9,7 @@ $syshdr(array('title'=>$title,'bland'=>$bland,'menu'=>$menu));
 if( !isset($target) ) $target='general';
 if      ($target == 'general') {$inc = 'editsetting.php' ;$path = 'system';}
 else if ($target == 'widget')  {$inc = 'editsetting.php' ;$path = "widget/$widget";}
-else if ($target == 'themes')  {$inc = ''                ;$path = "themes/$themes";}
+else if ($target == 'themes')  {$inc = 'edittheme.php'   ;$path = "themes/$themes";}
 else if ($target == 'menu')    {$inc = 'editmenu.php'    ;$path = '';}
 else if ($target == 'vc')      {$inc = 'viewcontents.php';$path = '';}
 $wpath = "widget";

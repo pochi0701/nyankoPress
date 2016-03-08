@@ -18,6 +18,7 @@ function dbLoad()
     global $_menu;
     if( file_exists("db/contents.txt") ){
         $_contents = json_decode(file_get_contents("db/contents.txt"),true);
+        
     }else{
         dbAddContents(array('mode'=>1,'title'=>'投稿一覧','contents'=>'','header'=>'','eyecatch'=>'','page'=>-1,'native'=>''));
     }
@@ -139,7 +140,7 @@ $start = $settings['start'];
 $bootstrap_css = $settings['bootstrap_css'];
 $bootstrap_js  = $settings['bootstrap_js'];
 $jquery_js     = $settings['jquery'];
-
+$fontawesome   = $settings['font_awesome'];
 $header  = function($params){global $theme;extract($params);include "themes/{$theme}/header.php";};
 $footer  = function($params){global $theme;extract($params);include "themes/{$theme}/footer.php";};
 $disp    = function($params){global $theme;extract($params);include "themes/{$theme}/main.php";};

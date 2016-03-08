@@ -8,6 +8,7 @@
   <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="<?php global $bootstrap_css;echo $bootstrap_css;?>" rel="stylesheet">
+  <?php global $fontawesome;if( strlen($fontawesome)>0) echo "<link rel=\"stylesheet\" href=\"$fontawesome\">\n"; ?>
   <style>
     @media (min-width:767px){
       .dropdown:hover > .dropdown-menu{
@@ -29,8 +30,13 @@
   ?>
 </head>
 <body>
-    <?php
-    global $navbar;
-    $navbar(array('bland'=>$bland,'menu'=>$menu));
-    ?>
-    <div class="container">
+  <?php
+      if( count($settings['header'])>0){
+          foreach( $settings['header'] as $wgt ){
+              $widget( array('name'=>$wgt) );
+          }
+      }
+      global $navbar;
+      $navbar(array('bland'=>$bland,'menu'=>$menu));
+  ?>
+  <div class="container">

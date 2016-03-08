@@ -1,4 +1,18 @@
     </div>
+    <?php
+        global $settings;
+        global $widget;
+        if( count($settings[$wgt_name])>0){
+            foreach( $settings[$wgt_name] as $wgt ){
+                $widget( array('name'=>$wgt,'location' =>'footer' ) );
+            }
+        }
+        if( count($settings['footer'])>0){
+            foreach( $settings['footer'] as $wgt ){
+                $widget( array('name'=>$wgt ) );
+            }
+        }
+    ?>
     <!-- ===== copyright ===== -->
     <div class="copyright">
       <p class="text-center">
@@ -20,14 +34,5 @@
         });
     });
     </script>
-    <?php
-        global $settings;
-        global $widget;
-        if( count($settings[$wgt_name])>0){
-            foreach( $settings[$wgt_name] as $wgt ){
-                $widget( array('name'=>$wgt,'location' =>'footer' ) );
-            }
-        }
-    ?>
   </body>
 </html>
