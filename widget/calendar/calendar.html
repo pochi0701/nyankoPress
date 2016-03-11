@@ -3,6 +3,6 @@
 <?php for($r=0 ;$r<$ln; $r++){echo "<tr>";for($w=0 ; $w<7;$w++){echo "<td>".(($d[$r*7+$w]>0)?$d[$r*7+$w]:'')."</td>"; } echo "</tr>\n";}
 echo "</table>\n";
 if( $link ){
-echo "<a href=\"index.php?ym={$lym}\">&lt&lt先月</a>";
+echo "<a href=\"index.php?ym={$lym}\">&lt;&lt;先月</a>";
 echo (isset($nym)?"<a href=\"index.php?ym={$nym}\">&nbsp来月&gt;&gt;</a>":"")."<br>\n";
 }                   

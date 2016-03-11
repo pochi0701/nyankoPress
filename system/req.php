@@ -194,4 +194,24 @@ function entag($text){
     unset($str);
     return implode("\r\n",$ary);
 }
-
+function Pagenation($total,&$page,$perPage){
+    // 合計ページ数
+    $totalPage = ceil($total/$perPage);
+    // 現在ページ決定(最初はページ1)
+    if      ( $page <= 0 )         $page = 1;
+    else if ( $page > $totalPage ) $page = $totalPage;
+    // 開始位置
+    $start = ($page-1)*$perPage;
+    //ページネーション生成
+    $st = $page - 2;
+    if( $st < 1 ) $st = 1;
+    $ed = $st+4;
+    if( $ed > $totalPage ){
+        $ed = $totalPage;
+        $st = $ed - 4;
+        if( $st < 1 ) $st = 1;
+    }
+    $prv = ($page>1)?($page-1):0;
+    $nxt = ($page<$totalPage)?($page+1):0;
+    return array('start'=>$start,'st'=>$st,'ed'=>$ed,'prv'=>$prv,'nxt'=>$nxt);
+}

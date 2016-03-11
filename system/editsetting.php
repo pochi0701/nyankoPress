@@ -2,17 +2,20 @@
     unset($settings);
     unset($attribute);
     include( "$path/settings.php");
+    $last = "";
     function form($opt,$req,$dispname,$id,$name,$value){
+    global $last;
+    $dispname2 = (($last === $dispname)?"":$dispname);
     if( $opt=='T'){
     echo"  <div class=\"form-group\">\n";
-    echo"    <label class=\"col-sm-3 control-label\" for=\"{$id}\">{$dispname}</label>\n";
+    echo"    <label class=\"col-sm-3 control-label\" for=\"{$id}\">{$dispname2}</label>\n";
     echo"    <div class=\"col-sm-9 form-inline\">\n";
     echo"      <input type=\"text\" class=\"form-control\" id=\"{$id}\" name=\"{$name}\" maxlength=\"80\" size=\"80\" value=\"".htmlspecialchars($value)."\" placeholder=\"{$dispname}\"".(($req=='R')?' required':'').">\n";
     echo"    </div>\n";
     echo"  </div>\n";
     }else if ( $opt=='B'){
     echo "  <div class=\"form-group\">\n";
-    echo "     <label class=\"col-sm-3 control-label\" for=\"{$id}\" >{$dispname}</label>\n";
+    echo "     <label class=\"col-sm-3 control-label\" for=\"{$id}\" >{$dispname2}</label>\n";
     echo "     <div class=\"col-sm-9\">\n";
     echo "        <textarea class=\"form-control\" id=\"{$id}\" name=\"{$name}\" rows=\"10\">".htmlspecialchars($value)."</textarea>\n";
     echo "     </div>\n";
@@ -22,12 +25,14 @@
     echo"    <div class=\"col-sm-offset-3 col-sm-9\">\n";
     echo"      <div class=\"checkbox\">\n";
     echo"        <label>\n";
-    echo"          <input type=\"checkbox\" name=\"{$name}\"".(($value=='on')?' checked':'').">{$dispname}\n";
+    echo"          <input type=\"checkbox\" name=\"{$name}\"".(($value=='on')?' checked':'').">{$dispname2}\n";
     echo"        </label>\n";
     echo"      </div>\n";
     echo"    </div>\n";
     echo"  </div>\n";
-    }};
+    }
+    $last = $dispname;
+    };
     //////////////////////////////////////////////////////////////////////////////////
     if( isset($_POST['submit'] )){
         foreach($settings as $key => $value) $settings[$key] = array_get($_POST,$key);

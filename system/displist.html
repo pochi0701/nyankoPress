@@ -22,10 +22,21 @@
     </thead>
     <tbody>
 <?php
+    $page  = array_getn($_GET,'page');
     $rmode = $mode % 2;
+    $perPage = 15;
+    $total = 0;
+    foreach( $_contents2 as $value){
+        if( $value['mode'] == $rmode ) $total++;
+    }
+    $param = Pagenation($total,$page,$perPage);
+    extract($param);
+    $cnt = -1;
     foreach( $_contents2 as $value){
         if( $value['mode'] == $rmode ){
-            
+            $cnt++;
+            if( $cnt<$start) continue;
+            if( $cnt>=$start+$perPage) continue;
             echo "<tr><td><a href=\"index.php?mode={$rmode}&p={$value['page']}\">{$value['page']}</a></td>";
             echo "<td><a href=\"index.php?mode={$rmode}&p={$value['page']}\">{$value['title']}</a></td>";
             echo "<td>{$value['regdate']}</td>";
@@ -36,6 +47,17 @@
 ?>
     </tbody>
   </table>
+  <div class="text-center">
+  <ul class="pagination">
+    <?php
+    echo "<li".(($prv==0)?" class=\"disabled\"":"")."><a href=\"index.php?mode=3&page={$prv}\">前</a></li>\n";
+    for( $num = $st ; $num<=$ed ; $num++ ){
+         echo "<li".(($page==$num)?" class=\"active\"":"")."><a href=\"index.php?mode=3&page={$num}\">{$num}</a></li>\n";
+    }
+    echo "<li".(($nxt==0)?" class=\"disabled\"":"")."><a href=\"index.php?mode=3&page={$nxt}\">次</a></li>\n";
+    ?>
+  </ul>
+  </div>
   <script>
     $('#confirm-delete').on('show.bs.modal', function(e) {
         $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));

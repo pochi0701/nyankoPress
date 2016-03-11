@@ -1,13 +1,13 @@
 <?php
 $settings=array();
-$settings['name'] = array('EUmW4FblppU','3SEXokSxZBI');
-$settings['width'] = '100%';
-$settings['height'] = '256px';
-$settings['allowfullscreen'] = 'on';
-$settings['autoplay'] = '';
+$settings['name'] = array(stripslashes('EUmW4FblppU'),stripslashes('3SEXokSxZBI'));
+$settings['title'] = array(stripslashes('ゼルダBGM'),stripslashes('東京メトロ'));
+$settings['size'] = array(stripslashes('4by3'),stripslashes('4by3'));
+$settings['allowfullscreen'] = stripslashes('on');
+$settings['autoplay'] = stripslashes('');
 $attribute=array();
-$attribute['name'] = array('YoutubeID'=>'TA');
-$attribute['width'] = array('表示幅'=>'T');
-$attribute['height'] = array('表示高さ'=>'T');
-$attribute['allowfullscreen'] = array('フルスクリーン'=>'C');
-$attribute['autoplay'] = array('オートプレイ'=>'C');
+$attribute['name']['YoutubeID'] = 'TA';
+$attribute['title']['表示タイトル'] = 'TA';
+$attribute['size']['4by3/16by9'] = 'TA';
+$attribute['allowfullscreen']['フルスクリーン'] = 'C';
+$attribute['autoplay']['オートプレイ'] = 'C';

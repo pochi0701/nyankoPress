@@ -1,18 +1,18 @@
 <?php
 $settings=array();
-$settings['theme'] = stripslashes('ver001');
+$settings['theme'] = stripslashes('standard');
 $settings['title'] = stripslashes('システム開発への道');
 $settings['widget_l'] = array();
-$settings['widget_r'] = array(stripslashes('calendar'),stripslashes('youtube'),stripslashes('youtube'),stripslashes('text'));
+$settings['widget_r'] = array(stripslashes('calendar'),stripslashes('youtube'),stripslashes('youtube'));
 $settings['widget_fixl'] = array();
 $settings['widget_fixr'] = array();
 $settings['widget_main'] = array(stripslashes('back2top'));
 $settings['widget_mainidx'] = array();
 $settings['header'] = array();
 $settings['footer'] = array(stripslashes('socialicon'));
-$settings['bootstrap_css'] = stripslashes('http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css');
-$settings['bootstrap_js'] = stripslashes('http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js');
-$settings['jquery'] = stripslashes('http://code.jquery.com/jquery-1.11.1.min.js');
+$settings['bootstrap_css'] = stripslashes('http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+$settings['bootstrap_js'] = stripslashes('http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js');
+$settings['jquery'] = stripslashes('http://code.jquery.com/jquery-1.12.0.min.js');
 $settings['font_awesome'] = stripslashes('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
 $settings['start'] = stripslashes('');
 $attribute=array();
