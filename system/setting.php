@@ -32,7 +32,7 @@ function dlist($path){
 <div class="list-group">
   <a href="index.php?mode=5&target=general"                class="list-group-item<?php echo (($target=='general')?' active':'');?>">一般</a>
   <a href="index.php?mode=5&target=menu"                   class="list-group-item<?php echo (($target=='menu')?' active':'');?>">メニュー編集</a>
-  <a href="system/login.php?force=1"                       class="list-group-item">ログインユーザの追加</a>
+  <a href="index.php?signin=1&force=1"                     class="list-group-item">ログインユーザの追加</a>
   <a href="index.php?mode=5&target=vc"                     class="list-group-item<?php echo (($target=='vc')?' active':'');?>">コンテンツダンプ</a>
 </div>
 <h4>ウィジット設定</h4>

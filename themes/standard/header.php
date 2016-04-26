@@ -8,6 +8,7 @@
   <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="<?php global $bootstrap_css;echo $bootstrap_css;?>" rel="stylesheet">
+  <link href="themes/standard/common.css" rel="stylesheet">
   <?php global $fontawesome;if( strlen($fontawesome)>0) echo "<link rel=\"stylesheet\" href=\"$fontawesome\">\n"; ?>
   <style>
     @media (min-width:767px){

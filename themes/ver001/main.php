@@ -33,7 +33,7 @@ if( $fixl+$fixr>0){
 }
 //title
 if($data['mode'] == 0){
-    echo "<div class=\"panel panel-default\">\n";
+    echo "<div class=\"panel panel-danger\">\n";
     echo "  <div class=\"panel-heading\">\n";
     echo "    <h2>{$data['title']}</h2>\n";
     echo "  </div>\n";

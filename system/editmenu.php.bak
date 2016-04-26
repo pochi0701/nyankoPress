@@ -10,7 +10,7 @@ if( strlen($submit) ){
     //$_menu構築
     $smenu = array();
     $array=preg_split("/[\r\n]+/",$text);
-    $cnt = 0;
+    $cnt = -1;
     foreach( $array as $value){
         if( strlen($value) > 0 ){
             $value = mb_convert_kana($value,'s','UTF-8');
@@ -19,17 +19,12 @@ if( strlen($submit) ){
             if( count($line) == 2 ){        
                 if( $flag == 0 ){
                     $smenu   += array($line[0] => $line[1]);
-                    //通常メニューが来たら$prevリセット
-                    unset($prev);
                 }else{
-                    //$prevが設定されてたら追加
-                    if( isset($prev) ){
-                        $prev += array($line[0] => $line[1]);
+                    if( is_array($smenu[$cnt]) ){
+                        $smenu[$cnt] += array($line[0] => $line[1]);
                     }else{
-                        //初回の２段目について$prevに保存
-                        $smenu[$cnt]  = array($line[0] => $line[1]);
-                        $prev = &$smenu[$cnt];
-                        $cnt++;
+                        $smenu[]  = array($line[0] => $line[1]);
+                        $cnt += 1;
                     }
                 }
             }
@@ -37,7 +32,6 @@ if( strlen($submit) ){
             break;
         }
     }
-    unset($prev);
     dbSetMenu(array('bland'=>$sbland,'menu'=>$smenu));
     echo "設定完了";
 //編集

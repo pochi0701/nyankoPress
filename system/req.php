@@ -27,7 +27,7 @@ function dbLoad()
     }else{
         $_menu = array();
         $_menu['bland'] = "初期メニュー";
-        $_menu['menu']  = array( "ログイン" => "system/login.php");
+        $_menu['menu']  = array( "ログイン" => "index.php?signin=1");
         dbSetMenu($_menu);
     }
 }
@@ -113,10 +113,14 @@ function dbGetMenu($mode)
     if( $mode >= 0 ){
         $bland = "編集";
         $menu = array(
+            "編集"           => "#",
+            array(
             "投稿編集"       => "index.php?mode=0",
             "投稿一覧"       => "index.php?mode=2",
+            "-"              => "#",
             "固定ページ編集" => "index.php?mode=1",
-            "固定ページ一覧" => "index.php?mode=3",
+            "固定ページ一覧" => "index.php?mode=3"
+            ),
             "メディア管理"   => "index.php?mode=4\" target=\"blank",
             "設定"           => "index.php?mode=5",
             "サイト表示"     => "index.php",

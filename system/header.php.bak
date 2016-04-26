@@ -11,13 +11,6 @@
   <?php echo (isset($head)?$head:"");?>
   <script src="<?php global $jquery_js;echo $jquery_js;?>"></script>
   <script src="<?php global $bootstrap_js;echo $bootstrap_js;?>"></script>
-  <style>
-    @media (min-width:767px){
-      .dropdown:hover > .dropdown-menu{
-        display: block;
-      }
-    }
-  </style>
 </head>
 <body>
     <?php

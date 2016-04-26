@@ -120,6 +120,13 @@ $head = <<<'EOT'
   color: #222;
   border-color: #222;
 }
+#loading{
+  position:absolute;
+  left:50%;
+  top:20%;
+  margin-left:-30px;
+  display:none;
+}
     </style>
 EOT;
 $syshdr(array('title'=>$title,'bland'=>$bland,'menu'=>$menu,'head'=>$head));

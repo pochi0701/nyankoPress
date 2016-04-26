@@ -3,6 +3,63 @@ session_start();
 require_once('system/req.php');
 $mode = array_getn($_GET,'mode');
 $page = array_getn($_GET,'p');
+$signin = array_getn($_GET,'signin');
+if( $signin == 1 ){
+    $id=array_get($_POST,"username");
+    $pw=array_get($_POST,"password");
+    $em=array_get($_POST,"email");
+    include("system/info.php");
+    $msg = "";
+    if( array_get($_GET,'force') == '' && isset($_SESSION) && array_getn($_SESSION,'login') == 1 ){
+        $mode = 0;
+        $_SERVER['REQUEST_URI'] = 'index.php?mode=0';
+    }else if( ! isset($login) ){
+        $msg = "IDとパスワードを記録します。";
+        include('system/login.html');
+        exit;
+    }
+    if( strlen($id)>0 && strlen($pw) ) {
+        //初回
+        if( ! isset($login) && strlen($em)>0){
+            $msg = array('userid'=>$id,'password'=>md5($pw),'email'=>$em);
+            $login[] = $msg;
+            file_put_contents("system/info.php",'<?php $login = json_decode(\''.json_encode($login).'\',true);'."\n");
+            $_SESSION['login'] = 1;
+            $_SESSION['author'] = $id;
+            $mode = 0;
+            $_SERVER['REQUEST_URI'] = 'index.php?mode=0';;
+        //２回目以降
+        }else if ( strlen($em)>0 && $_SESSION['login'] === 1){
+            $msg = array('userid'=>$id,'password'=>md5($pw),'email'=>$em);
+            $login[] = $msg;
+            file_put_contents("system/info.php",'<?php $login = json_decode(\''.json_encode($login).'\',true);'."\n");
+            $_SESSION['login'] = 1;
+            $_SESSION['author'] = $id;
+            $mode = 0;
+            $_SERVER['REQUEST_URI'] = 'index.php?mode=0';
+        }else{
+            $flag = 0;
+            foreach( $login as $key => $value){
+                if( $value['userid'] === $id && $value['password'] === md5($pw) ){
+                    $_SESSION['login'] = 1;
+                    $_SESSION['author'] = $id;
+                    $mode = 0;
+                    $_SERVER['REQUEST_URI'] = 'index.php?mode=0';
+                    $flag = 1;
+                    break;
+                }
+            }
+            if( $flag !== 1 ){
+                $msg = "IDまたはパスワードが違います。";
+                include('system/login.html');
+                exit;
+            }
+        }
+    }else{
+        include('system/login.html');
+        exit;
+    }
+}
 //ページデータ取得
 dbLoad();
 //編集
@@ -13,7 +70,6 @@ if( $mode >= 0 && isset($_SESSION['login'])){
     $target=basename($_SERVER['REQUEST_URI']);
     foreach($menu2 as $key => $value){
         $value = explode('"',$value);
-        //if( strpos(parse_url($value,PHP_URL_QUERY),$_SERVER['QUERY_STRING'])!==false ){
         if( strpos($target,$value[0])!==false ){
             $title = $key;
             break;

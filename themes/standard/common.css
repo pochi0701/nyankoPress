@@ -1,0 +1,91 @@
+body {
+  background-image: url("../../img/content.jpg");
+  background-position: center center;
+  //background-repeat: no-repeat;
+  background-attachment: fixed;
+  //background-size: cover;
+  background-color: #464646;
+}
+
+.navbar-static-top .navbar-brand {
+  margin-top: -15px;
+  padding-top: 0px;
+  max-height: 100%;
+  color: #ffffff;
+}
+.navbar-brand>img {
+  max-height: 100%;
+  padding: 15px; /* firefox bug fix */
+  width: auto;
+}
+
+/* Start : Override Bootstrap carousel */
+.carousel-control {
+  border: none;
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0 !important;
+}
+/* End : Override Bootstrap carousel */
+
+/* Start: Bootbusiness specific CSS */
+.content {
+  padding: 30px 0;
+  background: url('../img/content.jpg');
+}
+.thumbnail img {
+  width: 100%;
+}
+.active-link {
+  background-color: #2E3436;
+}
+.page-header {
+  margin: 0 0 30px;
+  border-bottom: 1px solid #9E9E9E;
+}
+.slider {
+	border-bottom:  1px solid #9E9E9E;
+}
+.widget-header {
+  border: 1px solid #9E9E9E;
+  padding: 20px 5px;
+  text-align: center;
+  margin: 0;
+  border-bottom: 0;
+  background-color: #EEEEEC;
+  -webkit-border-radius: 5px 5px 0 0;
+     -moz-border-radius: 5px 5px 0 0;
+          border-radius: 5px 5px 0 0;
+}
+.widget-body {
+  font-size: 16px;
+  padding: 30px 0 20px 0;
+  border: 1px solid #9E9E9E;
+  -webkit-border-radius: 0 0 5px 5px;
+     -moz-border-radius: 0 0 5px 5px;
+          border-radius: 0 0 5px 5px;
+}
+.widget-footer {
+  padding: 6%;
+  background-color: #EEEEEC;
+  border-top: 1px solid #161515;
+}
+.widget-footer p {
+  margin: 0;
+}
+.footer-divider {
+  border-top: 0;
+  border-bottom: 1px solid #333;
+}
+hr {
+    height: 1px;
+    background-color:#555;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+/* End: Bootbusiness specific CSS */
+

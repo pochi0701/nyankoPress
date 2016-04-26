@@ -16,6 +16,7 @@
         </div>
     </div>
 </div>
+<div id="loading"><img src="img/gif-load.gif"></div>
 <div class="panel panel-default">
     <div class="panel-heading"><strong>メディアアップロード</strong> <small>Jpg,gif,png,pdf,mp4..</small></div>
     <div class="panel-body">
@@ -82,6 +83,9 @@
   // コールバック関数(クライアント側への表示)
   function XmlHttpCallback(xmlhttp){
       var result = document.getElementById("result");
+      $(function() {
+        $("#loading").fadeOut();
+      });
       result.innerHTML = xmlhttp.responseText;
   }
   // *** アップロード用ドラッグ&ドロップ
@@ -94,6 +98,9 @@
           // まとめて送信する
           sendHttpRequest(event.dataTransfer.files);
       }
+      $(function() {
+        $("#loading").fadeIn();
+      });
       // イベントのキャンセル
       event.preventDefault();
   }

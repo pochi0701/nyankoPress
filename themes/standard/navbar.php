@@ -28,7 +28,11 @@
                        echo "  </a>\n";
                        echo "  <ul class=\"dropdown-menu\">\n";
                        foreach($value as $key2 => $value2 ){
-                           echo "    <li><a href=\"{$value2}\">{$key2}</a></li>\n";
+                           if( $key2 === '-' ){
+                               echo "<li role=\"separator\" class=\"divider\"></li>\n";
+                           }else{
+                               echo "    <li><a href=\"{$value2}\">{$key2}</a></li>\n";
+                           }
                        }
                        echo "  </ul>\n";
                        echo "</li>\n";
@@ -50,5 +54,6 @@
                  }
              ?>
           </ul>
-        </nav>
       </div>
+    </div>
+  </nav>
