@@ -1,6 +1,6 @@
 <?php
 $settings=array();
-$settings['theme'] = stripslashes('standard');
+$settings['theme'] = stripslashes('ver001');
 $settings['title'] = stripslashes('システム開発への道');
 $settings['widget_l'] = array();
 $settings['widget_r'] = array(stripslashes('calendar'),stripslashes('youtube'),stripslashes('youtube'));

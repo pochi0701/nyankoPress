@@ -25,7 +25,7 @@ Functions
 5. php native mode
    You can write native php in article. Just check php enable in editor.
 
-Note:If you use english, copy xxx_eng.php to xxx.php.
+//Note:If you use english, copy xxx_eng.php to xxx.php.
 
 ## installation
 I recommend you PHP version more than 5.

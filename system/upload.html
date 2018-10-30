@@ -16,12 +16,10 @@
         </div>
     </div>
 </div>
-<div id="loading"><img src="img/gif-load.gif"></div>
+<div id="loading"><img src="system/img/gif-load.gif"></div>
 <div class="panel panel-default">
     <div class="panel-heading"><strong>メディアアップロード</strong> <small>Jpg,gif,png,pdf,mp4..</small></div>
     <div class="panel-body">
-        <div id="result"><?php echo $errmsg; ?></div>
-        <br />
         <form action="" method="post" enctype="multipart/form-data">
             <div class="form-inline">
                 <div class="form-group">
@@ -33,6 +31,7 @@
        <div class="upload-drop-zone" id="drop-zone" ondragover="onUpload_DragOver(event)" ondrop="onUpload_Drop(event)">
         Just drag and drop files here
        </div>
+       <div id="result"><?php echo $errmsg; ?></div>
     </div>
 </div>
 <script type="text/javascript">

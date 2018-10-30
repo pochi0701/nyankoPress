@@ -17,7 +17,7 @@ if( $signin == 1 ){
         $msg = "IDとパスワードを記録します。";
         include('system/login.html');
         exit;
-    }
+    }else{
     if( strlen($id)>0 && strlen($pw) ) {
         //初回
         if( ! isset($login) && strlen($em)>0){
@@ -58,6 +58,7 @@ if( $signin == 1 ){
     }else{
         include('system/login.html');
         exit;
+        }
     }
 }
 //ページデータ取得

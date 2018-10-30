@@ -2,6 +2,50 @@
 require_once('req.php');
 $errmsg = ""; // エラーメッセージ
 define("FOLDER_UPLOAD" ,"img") ; // 保存先のフォルダ名  
+//$path：パス末尾はデリミタあり、なし可能
+//$file：ファイル名
+function resizer($path,$file)
+{
+    //$pathの末尾から'/'を削除
+    $path   = rtrim($path,"/");
+    $target = "$path/$file";
+    list($x,$y) = getimagesize($target);
+    //800x600より大きい物はoriginalにコピーして現物を縮小
+    //それ以下のものは変更しない
+    if( $x>800 && $y>600 ){
+        $newFile = "$path/original/{$file}";
+        if( 3*$x>4*$y ){
+            $nx = 800;
+            $ny = intval($y*800/$x);
+        }else{
+            $ny = 600;
+            $nx = intval($x*600/$y);
+        }
+        $type = exif_imagetype($target);
+        if( $type === IMAGETYPE_GIF ){
+            //　画像生成
+            copy( $target, $newFile);
+            $in  = ImageCreateFromGIF($target);
+            $out = ImageCreateTrueColor($nx , $ny);
+            ImageCopyResampled($out, $in,0,0,0,0, $nx, $ny, $x, $y);
+            ImageGIF($out, $target);
+        }else if ( $type === IMAGETYPE_JPEG ){
+            //　画像生成
+            copy( $target, $newFile);
+            $in  = ImageCreateFromJPEG($target);
+            $out = ImageCreateTrueColor($nx , $ny);
+            ImageCopyResampled($out, $in,0,0,0,0, $nx, $ny, $x, $y);
+            ImageJPEG($out, $target);
+        }else if ( $type === IMAGETYPE_PNG  ){
+            //　画像生成
+            copy( $target, $newFile);
+            $in  = ImageCreateFromPNG($target);
+            $out = ImageCreateTrueColor($nx , $ny);
+            ImageCopyResampled($out, $in,0,0,0,0, $nx, $ny, $x, $y);
+            ImagePNG($out, $target);
+        }
+    }
+}
 function getimglist()
 {
     //画像一覧取得
@@ -75,8 +119,12 @@ if (isset($_FILES['upfile'])){
     if ($errmsg  == ""){
         foreach ($_FILES['upfile']['error'] as $key => $value) {   
             $filename  = FOLDER_UPLOAD."/".$_FILES['upfile']['name'][$key];
+            $path      = FOLDER_UPLOAD;
+            $file      = $_FILES['upfile']['name'][$key];
             if (move_uploaded_file($_FILES['upfile']['tmp_name'][$key],$filename)){
                 chmod($filename,0644);  
+                //大きかったら自動リサイズ
+                resizer($path,$file);
             }else{
                $errmsg .= "<span class=\"text-danger\">ファイルのアップロードに失敗しました。</span><br />";        
             }  

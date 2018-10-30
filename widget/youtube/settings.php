@@ -1,8 +1,8 @@
 <?php
 $settings=array();
-$settings['name'] = array(stripslashes('EUmW4FblppU'),stripslashes('3SEXokSxZBI'));
-$settings['title'] = array(stripslashes('ゼルダBGM'),stripslashes('東京メトロ'));
-$settings['size'] = array(stripslashes('4by3'),stripslashes('4by3'));
+$settings['name'] = array(stripslashes('1yIHLQJNvDw'),stripslashes('3SEXokSxZBI'));
+$settings['title'] = array(stripslashes('ゼルダBtoW'),stripslashes('東京メトロ'));
+$settings['size'] = array(stripslashes('4by3'),stripslashes('4by3'),stripslashes('4By3'));
 $settings['allowfullscreen'] = stripslashes('on');
 $settings['autoplay'] = stripslashes('');
 $attribute=array();
