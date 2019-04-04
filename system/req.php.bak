@@ -72,12 +72,8 @@ function dbGetContents($page)
              return $_contents[$key];
         }
     }
-    if( $target >= 0 ){
-        return $_contents[$target];
-    }else{
-        return null;
-        //array('page'=>0,'mode'=>0,'title'=>'','contents'=>'','eyecatch'=>'','regdate'=>date("Y-m-d H:i:s"),'moddate'=>date("Y-m-d H:i:s"),'native'=>0);
-    }
+    //空白ページができる方がちょっとおかしい
+    return null;
 }
 function dbDelContents($page)
 {
@@ -125,7 +121,7 @@ function dbGetMenu($mode)
             "固定ページ編集" => "index.php?mode=1",
             "固定ページ一覧" => "index.php?mode=3"
             ),
-            "メディア管理"   => "index.php?mode=4\" target=\"_Medias",
+            "メディア管理"   => "index.php?mode=4\" target=\"blank",
             "設定"           => "index.php?mode=5",
             "サイト表示"     => "index.php",
             "ログアウト"     => "index.php?mode=6"
