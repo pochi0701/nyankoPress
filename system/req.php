@@ -72,12 +72,8 @@ function dbGetContents($page)
              return $_contents[$key];
         }
     }
-    if( $target >= 0 ){
-        return $_contents[$target];
-    }else{
-        return null;
-        //array('page'=>0,'mode'=>0,'title'=>'','contents'=>'','eyecatch'=>'','regdate'=>date("Y-m-d H:i:s"),'moddate'=>date("Y-m-d H:i:s"),'native'=>0);
-    }
+    //空白ページができる方がちょっとおかしい
+    return null;
 }
 function dbDelContents($page)
 {
@@ -89,6 +85,34 @@ function dbDelContents($page)
         }
     }
     file_put_contents("db/contents.txt",json_encode($_contents));
+}
+function dbNext($page)
+{
+    global $_contents;
+    $flag = 0;
+    foreach( $_contents as $key => $value){
+        if( $flag == 1 ){
+             return $_contents[$key];
+        }
+        if( $value['page'] == $page ){
+             $flag = 1;
+        }
+    }
+    //前のページがなければnull;
+    return null;
+}
+function dbBefore($page)
+{
+    global $_contents;
+    $lastPage = -1;
+    foreach( $_contents as $key => $value){
+        if( $value['page'] == $page && $lastPage>0 ){
+             return dbGetContents($lastPage);
+        }
+        $lastPage = $value['page'];
+    }
+    //前のページがなければnull;
+    return null;
 }
 //
 function dbSortedContents($param)
@@ -119,10 +143,10 @@ function dbGetMenu($mode)
         $menu = array(
             "編集"           => "#",
             array(
-            "投稿編集"       => "index.php?mode=0",
+            "新規投稿"       => "index.php?mode=0",
             "投稿一覧"       => "index.php?mode=2",
             "-"              => "#",
-            "固定ページ編集" => "index.php?mode=1",
+            "新規固定ページ" => "index.php?mode=1",
             "固定ページ一覧" => "index.php?mode=3"
             ),
             "メディア管理"   => "index.php?mode=4\" target=\"_Medias",
@@ -179,9 +203,16 @@ $native = function($data) {
 function entag($text){
     $ary = explode("\r\n", $text); // とりあえず行に分割
     $xdv = $tag = $lst = 0;
+    $cd  = 0; //コード内
+    $cdn = 0;
     foreach($ary as $key => &$str){
         $len = strlen($str);
         $xdv+=substr_count($str, "<div");       //divタグ開始
+        $xdv+=substr_count($str, "<code");      //code外
+        $xdv+=substr_count($str, "<pre");       //pre外
+        $cd +=substr_count($str, "<pre");
+        $cdn-=substr_count($str, "</pre");
+        $cd -=substr_count($str, "</pre");
         if( $len*(!$xdv) ){                     //divタグ外
            if( $lst ){
                $last .= '<br>';
@@ -193,9 +224,16 @@ function entag($text){
            $last .= '</p>';
            $tag = 0;
         }
+        if( $cdn > 0 ){
+           $str = htmlspecialchars($str, ENT_QUOTES);
+        }
+        $cdn = $cd;
         $lst = $len*(!$xdv);
         $last = &$str;
+        $xdv-=substr_count($str,"</pre");       //pre終了
+        $xdv-=substr_count($str,"</code");      //code終了
         $xdv-=substr_count($str,"</div");       //divタグ終了
+        if( $xdv<0) $xdv = 0;
     }
     if( $tag ) $last .= "</p>";
     unset($last);

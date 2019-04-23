@@ -49,6 +49,17 @@ if( $data['native'] == 'on'){
 }else{
     echo $data['contents'];
 }
+
+        $page = array_getn($_GET,'p');
+        if( isset($page) && $page > 0 ){
+            $before = dbBefore($page);
+            $next   = dbNext($page);
+            if( isset($before)) echo "<p class=\"text-left\"><a href=\"index.php?p={$before['page']}\">[&lt;&lt;&nbsp;{$before['title']}]</a></p>";
+            if( isset($next)  ) echo "<p class=\"text-right\"><a href=\"index.php?p={$next['page']}\">[{$next['title']}&nbsp;&gt;&gt;]</a></p>";
+        }
+
+
+
 if( $fixl+$fixr>0 ){
     echo "</div>\n";//-div
 }
