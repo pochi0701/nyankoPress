@@ -1,10 +1,10 @@
 <?php
 $settings=array();
 $settings['mode'] = stripslashes('text-center');
-$settings['twitter'] = stripslashes('https://twitter.com/pochi_birdland');
-$settings['facebook'] = stripslashes('https://www.facebook.com/birdlandcojp/');
+$settings['twitter'] = stripslashes('');
+$settings['facebook'] = stripslashes('');
 $settings['linkedin'] = stripslashes('https://www.linkedin.com/in/ryouji-kanazawa-0a854224');
-$settings['google'] = stripslashes('https://plus.google.com/u/0/b/113887903285906620640/113887903285906620640/posts/');
+$settings['google'] = stripslashes('');
 $settings['github'] = stripslashes('https://github.com/pochi0701');
 $settings['mail'] = stripslashes('info@birdland.co.jp');
 $settings['tel'] = stripslashes('+81117774440');

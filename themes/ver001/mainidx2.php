@@ -66,7 +66,7 @@
           <div class="col-xs-12 col-sm-6 col-md-4">
             <div class="thumbnail">
               <h4><?php echo "<a href=\"index.php?p={$value['page']}\">{$value['title']}</a>";?></h4>
-              <?php echo "<a href=\"index.php?p={$value['page']}\">";?><img src="<?php echo $value['eyecatch']; ?>" alt="..."></a>
+              <img src="<?php echo $value['eyecatch']; ?>" alt="...">
               <div class="caption">
               </div>
             </div>

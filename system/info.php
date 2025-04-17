@@ -1,0 +1,1 @@
+<?php $login = json_decode('[{"userid":"pochi","password":"9303b91cf4f86dfdd80d37e057f2e1d2","email":"kanazawa@birdland.co.jp"},{"userid":"saito","password":"f45900128bbec918a89b421d0626a1b3","email":"saito@birdland.co.jp"}]',true);

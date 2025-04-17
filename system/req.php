@@ -18,7 +18,7 @@ function dbLoad()
     global $_menu;
     if( file_exists("db/contents.txt") ){
         $_contents = json_decode(file_get_contents("db/contents.txt"),true);
-        
+
     }else{
         dbAddContents(array('mode'=>1,'title'=>'投稿一覧','contents'=>'','header'=>'','eyecatch'=>'','page'=>-1,'native'=>''));
     }
@@ -81,7 +81,7 @@ function dbDelContents($page)
     foreach( $_contents as $key => $value){
         if( $value['page'] == $page ){
              array_splice($_contents,$key,1);
-             break;        
+             break;
         }
     }
     file_put_contents("db/contents.txt",json_encode($_contents));
@@ -143,11 +143,9 @@ function dbGetMenu($mode)
         $menu = array(
             "編集"           => "#",
             array(
-            "新規投稿"       => "index.php?mode=0",
-            "投稿一覧"       => "index.php?mode=2",
+            "投稿"           => "index.php?mode=2",
             "-"              => "#",
-            "新規固定ページ" => "index.php?mode=1",
-            "固定ページ一覧" => "index.php?mode=3"
+            "固定ページ"     => "index.php?mode=3"
             ),
             "メディア管理"   => "index.php?mode=4\" target=\"_Medias",
             "設定"           => "index.php?mode=5",

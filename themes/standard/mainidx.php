@@ -40,13 +40,13 @@
     //main contents
     //pagenation
     $_contents = dbSortedContents(array('ym'=>$ym));
-    $page = array_getn($_GET,'page');
+    $spage = array_getn($_GET,'spage');
     $perPage = 4;
     $total = 0;
     foreach( $_contents as $value){
         if( $value['mode'] == 0 ) $total++;
     }
-    $param = Pagenation($total,$page,$perPage);
+    $param = Pagenation($total,$spage,$perPage);
     extract($param);
     $cnt2=-1;
     //display
@@ -62,8 +62,8 @@
               <div class="panel-body">
                 <?php echo "<span><small>投稿日：".date('Y年m月d日 H時i分s秒',strtotime($data['regdate']))."</small></span>\n"; ?>
                 <?php echo "<p>".mb_strimwidth(strip_tags($value['contents']),0, 120, '…', 'utf-8')."</p>\n"; ?>
+              </div>
             </div>
-          </div>
 <?php
         }
     }
@@ -85,11 +85,11 @@
     } 
     echo "<div class=\"text-center\">\n";
     echo "<ul class=\"pagination\">\n";
-    echo "<li".(($prv==0)?" class=\"disabled\"":"")."><a href=\"index.php?&page={$prv}\">前</a></li>\n";
+    echo "<li".(($prv==0)?" class=\"disabled\"":"")."><a href=\"index.php?spage={$prv}\">前</a></li>\n";
     for( $num = $st ; $num<=$ed ; $num++ ){
-         echo "<li".(($page==$num)?" class=\"active\"":"")."><a href=\"index.php?&page={$num}\">{$num}</a></li>\n";
+         echo "<li".(($spage==$num)?" class=\"active\"":"")."><a href=\"index.php?spage={$num}\">{$num}</a></li>\n";
     }
-    echo "<li".(($nxt==0)?" class=\"disabled\"":"")."><a href=\"index.php?&page={$nxt}\">次</a></li>\n";
+    echo "<li".(($nxt==0)?" class=\"disabled\"":"")."><a href=\"index.php?spage={$nxt}\">次</a></li>\n";
     echo "</ul>\n";
     echo "</div>\n";
     $footer(array('wgt_name'=>'widget_mainidx'));

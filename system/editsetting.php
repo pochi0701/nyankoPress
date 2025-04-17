@@ -54,10 +54,17 @@
              }
         }
         echo "\$attribute=array();\n";
-        foreach( $attribute as $key => $value){
-            list($key2,$value2) = each($value);
-            echo "\$attribute['{$key}']['{$key2}'] = '{$value2}';\n";
+
+        foreach ($attribute as $key => $value) {
+            foreach ($value as $key2 => $value2) { // `each()` の代わりに直接ループ
+                echo "\$attribute['{$key}']['{$key2}'] = '{$value2}';\n";
+            }
         }
+
+	//foreach( $attribute as $key => $value){
+        //    list($key2,$value2) = each($value);
+        //    echo "\$attribute['{$key}']['{$key2}'] = '{$value2}';\n";
+        //}
         $html = ob_get_contents();
         ob_end_clean();
         file_put_contents("$path/settings.php",$html);
@@ -88,9 +95,9 @@
             }
         }
     }
-    echo"  <div class=\"form-group\">\n";
-    echo"    <div class=\"col-sm-offset-3 col-sm-9\">\n";
-    echo"      <button type=\"submit\" name=\"submit\" value=\"submit\" class=\"btn btn-primary\">Regist</button>\n";
-    echo"    </div>\n";
-    echo"   </div>\n";
+    echo "  <div class=\"form-group\">\n";
+    echo "    <div class=\"col-sm-offset-3 col-sm-9\">\n";
+    echo "      <button type=\"submit\" name=\"submit\" value=\"submit\" class=\"btn btn-primary\">Regist</button>\n";
+    echo "    </div>\n";
+    echo "   </div>\n";
     echo "</form>\n";

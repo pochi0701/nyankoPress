@@ -24,6 +24,7 @@
 <?php
     $page  = array_getn($_GET,'page');
     $rmode = $mode % 2;
+    $nmode = $mode - 2;
     $perPage = 15;
     $total = 0;
     foreach( $_contents2 as $value){
@@ -32,6 +33,7 @@
     $param = Pagenation($total,$page,$perPage);
     extract($param);
     $cnt = -1;
+    echo "<a class=\"btn btn-primary\" href=\"index.php?mode={$nmode}\">新規作成</a><br>";
     foreach( $_contents2 as $value){
         if( $value['mode'] == $rmode ){
             $cnt++;
